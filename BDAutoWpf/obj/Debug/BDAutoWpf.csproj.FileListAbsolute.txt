@@ -1,0 +1,16 @@
+D:\GitKraken\BDAutoWpf\BDAutoWpf\bin\Debug\BDAutoWpf.exe.config
+D:\GitKraken\BDAutoWpf\BDAutoWpf\bin\Debug\BDAutoWpf.exe
+D:\GitKraken\BDAutoWpf\BDAutoWpf\bin\Debug\BDAutoWpf.pdb
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\App.g.cs
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf_MarkupCompile.cache
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf_MarkupCompile.lref
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf.g.resources
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf.Properties.Resources.resources
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf.csproj.GenerateResource.cache
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf.csproj.CoreCompileInputs.cache
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf.exe
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf.pdb
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\TableauDeBord.g.cs
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\TableauDeBord.baml
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Voiture.g.cs
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Voiture.baml

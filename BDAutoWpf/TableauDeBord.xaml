@@ -1,0 +1,13 @@
+﻿<Window x:Class="BDAutoWpf.TableauDeBord"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BDAutoWpf"
+        mc:Ignorable="d"
+         Title="Tableau de bord" Height="300" Width="300" Background="Black">
+    <StackPanel VerticalAlignment="Center">
+        <Button Name="btnAjouterVoiture" Content="Nouvelle Auto" Margin="5" Click="btnAjouterVoiture_Click"/>
+        <Button Name="btnQuitter" Content="Quitter" Margin="5" Click="btnQuitter_Click"/>
+    </StackPanel>
+</Window>

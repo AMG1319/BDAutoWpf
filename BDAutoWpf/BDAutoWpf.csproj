@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,7 +56,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="ViewModel\Base.cs" />
+    <Compile Include="ViewModel\Voiture.cs" />
+    <Compile Include="View\Voiture.xaml.cs">
+      <DependentUpon>Voiture.xaml</DependentUpon>
+    </Compile>
+    <Page Include="TableauDeBord.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,12 +69,36 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="TableauDeBord.xaml.cs">
+      <DependentUpon>TableauDeBord.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Voiture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\A_Base.cs" />
+    <Compile Include="Model\A_TClient.cs" />
+    <Compile Include="Model\A_TDesidrata.cs" />
+    <Compile Include="Model\A_TPrestation.cs" />
+    <Compile Include="Model\A_TService.cs" />
+    <Compile Include="Model\A_TTransaction.cs" />
+    <Compile Include="Model\A_TVoiture.cs" />
+    <Compile Include="Model\C_TClient.cs" />
+    <Compile Include="Model\C_TDesidrata.cs" />
+    <Compile Include="Model\C_TPrestation.cs" />
+    <Compile Include="Model\C_TService.cs" />
+    <Compile Include="Model\C_TTransaction.cs" />
+    <Compile Include="Model\C_TVoiture.cs" />
+    <Compile Include="Model\G_Base.cs" />
+    <Compile Include="Model\G_TClient.cs" />
+    <Compile Include="Model\G_TDesidrata.cs" />
+    <Compile Include="Model\G_TPrestation.cs" />
+    <Compile Include="Model\G_TService.cs" />
+    <Compile Include="Model\G_TTransaction.cs" />
+    <Compile Include="Model\G_TVoiture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,5 +124,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

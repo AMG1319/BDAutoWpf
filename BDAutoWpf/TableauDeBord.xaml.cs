@@ -18,11 +18,20 @@ namespace BDAutoWpf
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TableauDeBord : Window
     {
-        public MainWindow()
+        public TableauDeBord()
         {
             InitializeComponent();
+        }
+        private void btnAjouterVoiture_Click(object sender, RoutedEventArgs e)
+        {
+            View.Voiture f = new View.Voiture();
+            f.ShowDialog();
+        }
+        private void btnQuitter_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
