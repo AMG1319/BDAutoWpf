@@ -14,3 +14,5 @@ D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\TableauDeBord.g.cs
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\TableauDeBord.baml
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Voiture.g.cs
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Voiture.baml
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Client.g.cs
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Client.baml

@@ -29,6 +29,11 @@ namespace BDAutoWpf
             View.Voiture f = new View.Voiture();
             f.ShowDialog();
         }
+        private void btnAjouterClient_Click(object sender, RoutedEventArgs e)
+        {
+            View.Client f = new View.Client();
+            f.ShowDialog();
+        }
         private void btnQuitter_Click(object sender, RoutedEventArgs e)
         {
             Close();

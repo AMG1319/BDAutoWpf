@@ -1,11 +1,11 @@
-﻿<Window x:Class="BDAutoWpf.View.Voiture"
+﻿<Window x:Class="BDAutoWpf.View.Client"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BDAutoWpf.View"
         mc:Ignorable="d"
-         Title="Voiture" Height="450" Width="600">
+        Title="Client" Height="450" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300*"/>
@@ -26,7 +26,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -34,31 +33,27 @@
             </Grid.ColumnDefinitions>
             <TextBlock Name="tID" Text="Identifiant" VerticalAlignment="Center" Margin="0,4" />
             <TextBox Name="tbID" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UneVoiture.ID, Mode=TwoWay}" />
+            Text="{Binding Path=UnClient.ID, Mode=TwoWay}" />
 
-            <TextBlock Name="tPre" Text="Marque" Grid.Row="1" VerticalAlignment="Center" Margin="0,4" />
-            <TextBox Name="tbMarque" Grid.Row="1" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UneVoiture.Marque, Mode=TwoWay}" />
+            <TextBlock Name="tNom" Text="Nom" Grid.Row="1" VerticalAlignment="Center" Margin="0,4" />
+            <TextBox Name="tbNom" Grid.Row="1" Grid.Column="1" Margin="3,3,45.8,3"
+            Text="{Binding Path=UnClient.Nom, Mode=TwoWay}" />
 
-            <TextBlock Name="tNom" Text="Model" Grid.Row="2" VerticalAlignment="Center" Margin="0,4" />
-            <TextBox Name="tbModel" Grid.Row="2" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UneVoiture.Model, Mode=TwoWay}" />
+            <TextBlock Name="tPr" Text="Prénom" Grid.Row="2" VerticalAlignment="Center" Margin="0,4" />
+            <TextBox Name="tbPrenom" Grid.Row="2" Grid.Column="1" Margin="3,3,45.8,3"
+            Text="{Binding Path=UnClient.Prenom, Mode=TwoWay}" />
 
-            <TextBlock Name="tNo" Text="Annee" Grid.Row="3" VerticalAlignment="Center" Margin="0,4" />
-            <TextBox Name="tbAnnee" Grid.Row="3" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UneVoiture.Annee, Mode=TwoWay}" />
+            <TextBlock Name="tNo" Text="Num.Téléphone" Grid.Row="3" VerticalAlignment="Center" Margin="0,4" />
+            <TextBox Name="tbNumTel" Grid.Row="3" Grid.Column="1" Margin="3,3,45.8,3"
+            Text="{Binding Path=UnClient.NumTel, Mode=TwoWay}" />
 
-            <TextBlock Name="tN" Text="Kilometrage" Grid.Row="4" VerticalAlignment="Center" Margin="0,4" />
-            <TextBox Name="tbKm" Grid.Row="4" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UneVoiture.Km, Mode=TwoWay}" />
+            <TextBlock Name="tN" Text="Email" Grid.Row="4" VerticalAlignment="Center" Margin="0,4" />
+            <TextBox Name="tbMail" Grid.Row="4" Grid.Column="1" Margin="3,3,45.8,3"
+            Text="{Binding Path=UnClient.Mail, Mode=TwoWay}" />
 
-            <TextBlock Name="t" Text="Couleur" Grid.Row="5" VerticalAlignment="Center" Margin="0,4" />
-            <TextBox Name="tbCouleur" Grid.Row="5" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UneVoiture.Couleur, Mode=TwoWay}" />
-
-            <TextBlock Name="to" Text="Prix" Grid.Row="6" VerticalAlignment="Center" Margin="0,4" />
-            <TextBox Name="tbPrix" Grid.Row="6" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UneVoiture.Prix, Mode=TwoWay}" />
+            <TextBlock Name="t" Text="Code Postal" Grid.Row="5" VerticalAlignment="Center" Margin="0,4" />
+            <TextBox Name="tbCodePostal" Grid.Row="5" Grid.Column="1" Margin="3,3,45.8,3"
+            Text="{Binding Path=UnClient.CodePostal, Mode=TwoWay}" />
 
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="89,2.667,89,3" >
@@ -67,17 +62,16 @@
             <Button Name="bAnnuler" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
            Command="{Binding cAnnuler}" />
         </StackPanel>
-        <DataGrid Name="dgVoitures" ItemsSource="{Binding Path=BcpVoitures}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
+        <DataGrid Name="dgClients" ItemsSource="{Binding Path=BcpClients}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
             IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-            SelectedItem="{Binding VoitureSelectionnee, Mode=TwoWay}" SelectionChanged="dgVoitures_SelectionChanged" Margin="0,0,0,0.333"  >
+            SelectedItem="{Binding ClientSelectionnee, Mode=TwoWay}" SelectionChanged="dgClients_SelectionChanged" Margin="0,0,0,0.333"  >
             <DataGrid.Columns>
-                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=IDVoiture}" />
-                <DataGridTextColumn Header="Marque" Binding="{Binding Path=VMarque}" Width="*" />
-                <DataGridTextColumn Header="Model" Binding="{Binding Path=VModel}" Width="*" />
-                <DataGridTextColumn Header="Annee" Binding="{Binding Path=VAnnee}" Width="*" />
-                <DataGridTextColumn Header="Km" Binding="{Binding Path=VKilometrage}" Width="*" />
-                <DataGridTextColumn Header="Couleur" Binding="{Binding Path=VCouleur}" Width="*" />
-                <DataGridTextColumn Header="Prix" Binding="{Binding Path=VPrix}" Width="*" />
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=IDClient}" />
+                <DataGridTextColumn Header="Nom" Binding="{Binding Path=CNom}" Width="*" />
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Path=CPrenom}" Width="*" />
+                <DataGridTextColumn Header="Num.Tél" Binding="{Binding Path=CNumTel}" Width="*" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Path=CMail}" Width="*" />
+                <DataGridTextColumn Header="Code Postal" Binding="{Binding Path=CCodePostal}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="32,2.667,32,3" >
