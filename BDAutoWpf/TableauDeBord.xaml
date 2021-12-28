@@ -10,6 +10,7 @@
         <Button Name="btnAjouterVoiture" Content="Nouvelle Auto" Margin="5" Click="btnAjouterVoiture_Click"/>
         <Button Name="btnAjouterService" Content="Nouveau Service" Margin="5" Click="btnAjouterService_Click"/>
         <Button Name="btnAjouterClient" Content="Nouveau Client" Margin="5" Click="btnAjouterClient_Click"/>
+        <Button Name="btnAjouterDesidrata" Content="Nouveau Desidrata" Margin="5" Click="btnAjouterDesidrata_Click"/>
         <Button Name="btnQuitter" Content="Quitter" Margin="5" Click="btnQuitter_Click"/>
     </StackPanel>
 </Window>

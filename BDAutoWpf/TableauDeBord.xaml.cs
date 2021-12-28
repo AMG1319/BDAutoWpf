@@ -44,6 +44,10 @@ namespace BDAutoWpf
             Close();
         }
 
-        
+        private void btnAjouterDesidrata_Click(object sender, RoutedEventArgs e)
+        {
+            View.Desidrata f = new View.Desidrata();
+            f.ShowDialog();
+        }
     }
 }
