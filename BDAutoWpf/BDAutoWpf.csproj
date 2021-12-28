@@ -58,9 +58,13 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\Base.cs" />
     <Compile Include="ViewModel\Client.cs" />
+    <Compile Include="ViewModel\Service.cs" />
     <Compile Include="ViewModel\Voiture.cs" />
     <Compile Include="View\Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Service.xaml.cs">
+      <DependentUpon>Service.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Voiture.xaml.cs">
       <DependentUpon>Voiture.xaml</DependentUpon>
@@ -78,6 +82,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Client.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Service.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

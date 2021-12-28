@@ -16,3 +16,6 @@ D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Voiture.g.cs
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Voiture.baml
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Client.g.cs
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Client.baml
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Service.g.cs
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Service.baml
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf.csproj.AssemblyReference.cache

@@ -27,8 +27,8 @@ namespace BDAutoWpf.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-U9ONRQ2\\SQLEXPRESS;AttachDbFilename=D:\\WPF-Winforms\\NouvelleB" +
-            "D\\BDAutoModif.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" +
-            "")]
+            "D\\BDAuto3\\BDAuto2.mdf;Integrated Security=True;Connect Timeout=30;User Instance=" +
+            "True")]
         public string BDConnexion {
             get {
                 return ((string)(this["BDConnexion"]));

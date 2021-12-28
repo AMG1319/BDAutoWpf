@@ -14,17 +14,17 @@ namespace BDAutoWpf.Classes
   #region Données membres
   private int _IDService;
   private string _SNom;
-  private string _SPrix;
+  private double _SPrix;
   #endregion
   #region Constructeurs
   public C_TService()
   { }
-  public C_TService(string SNom_, string SPrix_)
+  public C_TService(string SNom_, double SPrix_)
   {
    SNom = SNom_;
    SPrix = SPrix_;
   }
-  public C_TService(int IDService_, string SNom_, string SPrix_)
+  public C_TService(int IDService_, string SNom_, double SPrix_)
    : this(SNom_, SPrix_)
   {
    IDService = IDService_;
@@ -41,7 +41,7 @@ namespace BDAutoWpf.Classes
    get { return _SNom; }
    set { _SNom = value; }
   }
-  public string SPrix
+  public double SPrix
   {
    get { return _SPrix; }
    set { _SPrix = value; }

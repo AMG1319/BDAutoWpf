@@ -20,7 +20,7 @@ namespace BDAutoWpf.Acces
   	: base(sChaineConnexion)
   { }
   #endregion
-  public int Ajouter(string SNom, string SPrix)
+  public int Ajouter(string SNom, double SPrix)
   {
    CreerCommande("AjouterTService");
    int res = 0;
@@ -34,7 +34,7 @@ namespace BDAutoWpf.Acces
    Commande.Connection.Close();
    return res;
   }
-  public int Modifier(int IDService, string SNom, string SPrix)
+  public int Modifier(int IDService, string SNom, double SPrix)
   {
    CreerCommande("ModifierTService");
    int res = 0;
@@ -58,7 +58,7 @@ namespace BDAutoWpf.Acces
     C_TService tmp = new C_TService();
     tmp.IDService = int.Parse(dr["IDService"].ToString());
     tmp.SNom = dr["SNom"].ToString();
-    tmp.SPrix = dr["SPrix"].ToString();
+    tmp.SPrix = double.Parse(dr["SPrix"].ToString());
     res.Add(tmp);
 			}
 			dr.Close();
@@ -76,7 +76,7 @@ namespace BDAutoWpf.Acces
    {
     res.IDService = int.Parse(dr["IDService"].ToString());
     res.SNom = dr["SNom"].ToString();
-    res.SPrix = dr["SPrix"].ToString();
+    res.SPrix = double.Parse(dr["SPrix"].ToString());
    }
 			dr.Close();
 			Commande.Connection.Close();

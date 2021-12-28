@@ -21,9 +21,9 @@ namespace BDAutoWpf.Gestion
    : base(sChaineConnexion)
   { }
   #endregion
-  public int Ajouter(string SNom, string SPrix)
+  public int Ajouter(string SNom, double SPrix)
   { return new A_TService(ChaineConnexion).Ajouter(SNom, SPrix); }
-  public int Modifier(int IDService, string SNom, string SPrix)
+  public int Modifier(int IDService, string SNom, double SPrix)
   { return new A_TService(ChaineConnexion).Modifier(IDService, SNom, SPrix); }
   public List<C_TService> Lire(string Index)
   { return new A_TService(ChaineConnexion).Lire(Index); }
