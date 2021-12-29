@@ -110,14 +110,14 @@ namespace BDAutoWpf.ViewModel
             {
                 UnDesidrata.ID = new G_TDesidrata(chConnexion).Ajouter(UnDesidrata.IDC,UnDesidrata.Marque,UnDesidrata.Model,
                     UnDesidrata.AnneeMin,UnDesidrata.AnneeMax,UnDesidrata.KmMin,UnDesidrata.KmMax,UnDesidrata.Couleur,UnDesidrata.PrixMin,UnDesidrata.PrixMax);
-                BcpDesidratas.Add(new C_TDesidrata(UnDesidrata.IDC, UnDesidrata.Marque, UnDesidrata.Model,
+                BcpDesidratas.Add(new C_TDesidrata(UnDesidrata.ID, UnDesidrata.IDC, UnDesidrata.Marque, UnDesidrata.Model,
                     UnDesidrata.AnneeMin, UnDesidrata.AnneeMax, UnDesidrata.KmMin, UnDesidrata.KmMax, UnDesidrata.Couleur, UnDesidrata.PrixMin, UnDesidrata.PrixMax));
             }
             else
             {
                 new G_TDesidrata(chConnexion).Modifier(UnDesidrata.ID, UnDesidrata.IDC, UnDesidrata.Marque, UnDesidrata.Model,
                     UnDesidrata.AnneeMin, UnDesidrata.AnneeMax, UnDesidrata.KmMin, UnDesidrata.KmMax, UnDesidrata.Couleur, UnDesidrata.PrixMin, UnDesidrata.PrixMax);
-                BcpDesidratas[nAjout] = new C_TDesidrata(UnDesidrata.IDC, UnDesidrata.Marque, UnDesidrata.Model,
+                BcpDesidratas[nAjout] = new C_TDesidrata(UnDesidrata.ID, UnDesidrata.IDC, UnDesidrata.Marque, UnDesidrata.Model,
                     UnDesidrata.AnneeMin, UnDesidrata.AnneeMax, UnDesidrata.KmMin, UnDesidrata.KmMax, UnDesidrata.Couleur, UnDesidrata.PrixMin, UnDesidrata.PrixMax);
             }
             ActiverUneFiche = false;

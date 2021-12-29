@@ -102,7 +102,7 @@ namespace BDAutoWpf.ViewModel
             if (nAjout == -1)
             {
                 UnService.ID = new G_TService(chConnexion).Ajouter(UnService.Nom, UnService.Prix);
-                BcpServices.Add(new C_TService(UnService.Nom, UnService.Prix));
+                BcpServices.Add(new C_TService(UnService.ID,UnService.Nom, UnService.Prix));
             }
             else
             {
