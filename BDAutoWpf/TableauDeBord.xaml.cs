@@ -49,5 +49,17 @@ namespace BDAutoWpf
             View.Desidrata f = new View.Desidrata();
             f.ShowDialog();
         }
+
+        private void btnAjouterPrestation_Click(object sender, RoutedEventArgs e)
+        {
+            View.Prestation f = new View.Prestation();
+            f.ShowDialog();
+        }
+
+        private void btnAjouterTransaction_Click(object sender, RoutedEventArgs e)
+        {
+            View.Transaction f = new View.Transaction();
+            f.ShowDialog();
+        }
     }
 }

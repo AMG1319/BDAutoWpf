@@ -20,3 +20,7 @@ D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Service.g.cs
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Service.baml
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Desidrata.g.cs
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Desidrata.baml
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Prestation.g.cs
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Prestation.baml
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Transaction.g.cs
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Transaction.baml

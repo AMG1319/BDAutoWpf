@@ -7,6 +7,8 @@
         mc:Ignorable="d"
          Title="Tableau de bord" Height="300" Width="300" Background="Black">
     <StackPanel VerticalAlignment="Center">
+        <Button Name="btnAjouterPrestation" Content="Nouvelle Prestation" Margin="5" Click="btnAjouterPrestation_Click"/>
+        <Button Name="btnAjouterTransaction" Content="Nouvelle Transaction" Margin="5" Click="btnAjouterTransaction_Click"/>
         <Button Name="btnAjouterVoiture" Content="Nouvelle Auto" Margin="5" Click="btnAjouterVoiture_Click"/>
         <Button Name="btnAjouterService" Content="Nouveau Service" Margin="5" Click="btnAjouterService_Click"/>
         <Button Name="btnAjouterClient" Content="Nouveau Client" Margin="5" Click="btnAjouterClient_Click"/>

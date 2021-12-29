@@ -59,7 +59,9 @@
     <Compile Include="ViewModel\Base.cs" />
     <Compile Include="ViewModel\Client.cs" />
     <Compile Include="ViewModel\Desidrata.cs" />
+    <Compile Include="ViewModel\Prestation.cs" />
     <Compile Include="ViewModel\Service.cs" />
+    <Compile Include="ViewModel\Transaction.cs" />
     <Compile Include="ViewModel\Voiture.cs" />
     <Compile Include="View\Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
@@ -67,8 +69,14 @@
     <Compile Include="View\Desidrata.xaml.cs">
       <DependentUpon>Desidrata.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Prestation.xaml.cs">
+      <DependentUpon>Prestation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Service.xaml.cs">
       <DependentUpon>Service.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Transaction.xaml.cs">
+      <DependentUpon>Transaction.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Voiture.xaml.cs">
       <DependentUpon>Voiture.xaml</DependentUpon>
@@ -93,7 +101,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Prestation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Service.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Transaction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
