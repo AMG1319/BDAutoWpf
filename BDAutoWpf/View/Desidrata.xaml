@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BDAutoWpf.View"
         mc:Ignorable="d"
-        Title="Desidrata" Height="700" Width="600">
+        Title="Desidrata" Height="700" Width="600" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300*"/>
-            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -18,7 +17,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid Name="UneFiche" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}" 
-              Margin="0,0,0,0.333">
+              Margin="0,0,6.6,0.6">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -38,11 +37,11 @@
             </Grid.ColumnDefinitions>
             <TextBlock Name="tID" Text="Identifiant" VerticalAlignment="Center" Margin="0,4" />
             <TextBox Name="tbID" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UnDesidrata.ID, Mode=TwoWay}" />
+            Text="{Binding Path=UnDesidrata.ID, Mode=TwoWay}" IsEnabled="True"/>
 
             <TextBlock Name="tIDC" Text="Identifiant Client" Grid.Row="1" VerticalAlignment="Center" Margin="0,4" />
-            <TextBox Name="tbIDC" Grid.Row="1" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UnDesidrata.IDC, Mode=TwoWay}" />
+            <ComboBox Name="cbIDC" Margin="3,3,45.8,3" Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Path=UnDesidrata.Client, Mode=TwoWay}"/>
+
 
             <TextBlock Name="tM" Text="Marque" Grid.Row="2" VerticalAlignment="Center" Margin="0,4" />
             <TextBox Name="tbMarque" Grid.Row="2" Grid.Column="1" Margin="3,3,45.8,3"
@@ -59,7 +58,7 @@
             <TextBlock Name="t" Text="Annee Max." Grid.Row="5" VerticalAlignment="Center" Margin="0,4" />
             <TextBox Name="tbAnneeMax" Grid.Row="5" Grid.Column="1" Margin="3,3,45.8,3"
             Text="{Binding Path=UnDesidrata.AnneeMax, Mode=TwoWay}" />
-           
+
             <TextBlock Name="tk" Text="Kilomètrage Min." Grid.Row="6" VerticalAlignment="Center" Margin="0,4" />
             <TextBox Name="tbKmMin" Grid.Row="6" Grid.Column="1" Margin="3,3,45.8,3"
             Text="{Binding Path=UnDesidrata.KmMin, Mode=TwoWay}" />
@@ -67,7 +66,7 @@
             <TextBlock Name="tkm" Text="Kilomètrage Max." Grid.Row="7" VerticalAlignment="Center" Margin="0,4" />
             <TextBox Name="tbKmMax" Grid.Row="7" Grid.Column="1" Margin="3,3,45.8,3"
             Text="{Binding Path=UnDesidrata.KmMax, Mode=TwoWay}" />
-            
+
             <TextBlock Name="tc" Text="Couleur" Grid.Row="8" VerticalAlignment="Center" Margin="0,4" />
             <TextBox Name="tbCouleur" Grid.Row="8" Grid.Column="1" Margin="3,3,45.8,3"
             Text="{Binding Path=UnDesidrata.Couleur, Mode=TwoWay}" />
@@ -82,7 +81,7 @@
 
 
         </Grid>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="89,2.667,89,3" >
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="238,2.4,241.6,2.8" Width="114" >
             <Button Name="bConfirmer" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
            Command="{Binding cConfirmer}" />
             <Button Name="bAnnuler" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
@@ -90,7 +89,7 @@
         </StackPanel>
         <DataGrid Name="dgDesidratas" ItemsSource="{Binding Path=BcpDesidratas}" Grid.Row="2" VerticalScrollBarVisibility="Visible"
             IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-            SelectedItem="{Binding DesidrataSelectionnee, Mode=TwoWay}" SelectionChanged="dgDesidratas_SelectionChanged" Margin="0,0,0,0.333"  >
+            SelectedItem="{Binding DesidrataSelectionnee, Mode=TwoWay}" SelectionChanged="dgDesidratas_SelectionChanged" Margin="0,0.2,6.6,0.4"  >
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=IDDesidrata}" />
                 <DataGridTextColumn Header="IDClient" Binding="{Binding Path=IDClient}" Width="Auto" />
@@ -105,17 +104,15 @@
                 <DataGridTextColumn Header="Prix Max." Binding="{Binding Path=DPrixMax}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="32,2.667,32,3" >
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="182,2.6,185.6,3.4" Width="226" >
             <Button Name="bAjouter" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding cAjouter}" />
             <Button Name="bModifier" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding cModifier}" />
             <Button Name="bSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding cSupprimer}" />
-            <Button x:Name="bEssaiSelMult" Content="Sél. Mult." Margin="3" IsEnabled="{Binding ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding cEssaiSelMult}"
-           CommandParameter="{Binding ElementName=dgDesidratas, Path=SelectedItems}" />
+            
         </StackPanel>
-        <RichTextBox Name="rtbDoc" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2" Margin="0,0,-0.666,0" />
+        
     </Grid>
 </Window>

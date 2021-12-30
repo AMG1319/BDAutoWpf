@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BDAutoWpf.ViewModel;
-using System.Windows;
+//using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -17,15 +17,19 @@ using BDAutoWpf.Classes;
 using BDAutoWpf.Gestion;
 using System.Collections;
 using System.Configuration;
+using System.Windows.Forms;
+using System.Data;
+
 
 namespace BDAutoWpf.ViewModel
 {
     public class VM_Desidrata : BasePropriete
     {
-        //DESKTOP-U9ONRQ2\SQLEXPRESS
         #region Données Écran
         private string chConnexion = ConfigurationManager.ConnectionStrings["BDAutoWpf.Properties.Settings.BDConnexion"].ConnectionString;
         private int nAjout;
+        public DataTable dtDesidrata = new DataTable();
+
         private bool _ActiverUneFiche;
         public bool ActiverUneFiche
         {
@@ -42,22 +46,23 @@ namespace BDAutoWpf.ViewModel
             get { return _ActiverBcpFiche; }
             set { AssignerChamp<bool>(ref _ActiverBcpFiche, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
-        private C_TDesidrata _DesidrataSelectionnee;
-        public C_TDesidrata DesidrataSelectionnee
+        private DataRowView _DesidrataSelectionnee;
+        public DataRowView DesidrataSelectionnee
         {
             get { return _DesidrataSelectionnee; }
-            set { AssignerChamp<C_TDesidrata>(ref _DesidrataSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            set { AssignerChamp<DataRowView>(ref _DesidrataSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
         #endregion
         #region Données extérieures
+
         private VM_UnDesidrata _UnDesidrata;
         public VM_UnDesidrata UnDesidrata
         {
             get { return _UnDesidrata; }
             set { AssignerChamp<VM_UnDesidrata>(ref _UnDesidrata, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
-        private ObservableCollection<C_TDesidrata> _BcpDesidratas = new ObservableCollection<C_TDesidrata>();
-        public ObservableCollection<C_TDesidrata> BcpDesidratas
+        private BindingSource _BcpDesidratas = new BindingSource();
+        public BindingSource BcpDesidratas
         {
             get { return _BcpDesidratas; }
             set { _BcpDesidratas = value; }
@@ -94,31 +99,67 @@ namespace BDAutoWpf.ViewModel
             cAjouter = new BaseCommande(Ajouter);
             cModifier = new BaseCommande(Modifier);
             cSupprimer = new BaseCommande(Supprimer);
-            cEssaiSelMult = new BaseCommande(EssaiSelMult);
         }
-        private ObservableCollection<C_TDesidrata> ChargerDesidratas(string chConn)
-        {
-            ObservableCollection<C_TDesidrata> rep = new ObservableCollection<C_TDesidrata>();
+
+        private BindingSource ChargerDesidratas(string chConn)
+        {            
+            BindingSource rep = new BindingSource();
+            dtDesidrata.Columns.Add(new DataColumn("IDDesidrata", Type.GetType("System.Int32")));
+            dtDesidrata.Columns.Add(new DataColumn("IDClient"));
+            dtDesidrata.Columns.Add(new DataColumn("DMarque"));
+            dtDesidrata.Columns.Add(new DataColumn("DModel"));
+            dtDesidrata.Columns.Add(new DataColumn("DAnneeMin"));
+            dtDesidrata.Columns.Add(new DataColumn("DAnneeMax"));
+            dtDesidrata.Columns.Add(new DataColumn("DKmMin"));
+            dtDesidrata.Columns.Add(new DataColumn("DKmMax"));
+            dtDesidrata.Columns.Add(new DataColumn("DCouleur"));
+            dtDesidrata.Columns.Add(new DataColumn("DPrixMin"));
+            dtDesidrata.Columns.Add(new DataColumn("DPrixMax"));
+
             List<C_TDesidrata> lTmp = new G_TDesidrata(chConn).Lire("DMarque");
-            foreach (C_TDesidrata Tmp in lTmp)
-                rep.Add(Tmp);
+            foreach (C_TDesidrata d in lTmp)
+            {
+                C_TClient Tmp = new G_TClient(chConnexion).Lire_ID(d.IDClient);
+                dtDesidrata.Rows.Add(d.IDDesidrata, d.IDClient+ "-" + Tmp.CNom + "-" + Tmp.CPrenom , d.DMarque, d.DModel, d.DAnneeMin, d.DAnneeMax, d.DKmMin, d.DKmMax, d.DCouleur, d.DPrixMin, d.DPrixMax);
+            }
+            
+            rep.DataSource = dtDesidrata;
             return rep;
         }
         public void Confirmer()
         {
             if (nAjout == -1)
             {
+                string [] s;
+                s = UnDesidrata.Client.Split('-');
+                UnDesidrata.IDC = Convert.ToInt32(s[0]);
                 UnDesidrata.ID = new G_TDesidrata(chConnexion).Ajouter(UnDesidrata.IDC,UnDesidrata.Marque,UnDesidrata.Model,
                     UnDesidrata.AnneeMin,UnDesidrata.AnneeMax,UnDesidrata.KmMin,UnDesidrata.KmMax,UnDesidrata.Couleur,UnDesidrata.PrixMin,UnDesidrata.PrixMax);
-                BcpDesidratas.Add(new C_TDesidrata(UnDesidrata.ID, UnDesidrata.IDC, UnDesidrata.Marque, UnDesidrata.Model,
-                    UnDesidrata.AnneeMin, UnDesidrata.AnneeMax, UnDesidrata.KmMin, UnDesidrata.KmMax, UnDesidrata.Couleur, UnDesidrata.PrixMin, UnDesidrata.PrixMax));
+                C_TClient Tmp = new G_TClient(chConnexion).Lire_ID(UnDesidrata.IDC);
+                dtDesidrata.Rows.Add(UnDesidrata.ID, Tmp.IDClient + "-" + Tmp.CNom + "-" + Tmp.CPrenom, UnDesidrata.Marque, UnDesidrata.Model,
+                    UnDesidrata.AnneeMin, UnDesidrata.AnneeMax, UnDesidrata.KmMin, UnDesidrata.KmMax, UnDesidrata.Couleur, UnDesidrata.PrixMin, UnDesidrata.PrixMax);               
             }
             else
             {
+                string[] s;
+                s = UnDesidrata.Client.Split('-');
+                UnDesidrata.IDC = Convert.ToInt32(s[0]);
                 new G_TDesidrata(chConnexion).Modifier(UnDesidrata.ID, UnDesidrata.IDC, UnDesidrata.Marque, UnDesidrata.Model,
                     UnDesidrata.AnneeMin, UnDesidrata.AnneeMax, UnDesidrata.KmMin, UnDesidrata.KmMax, UnDesidrata.Couleur, UnDesidrata.PrixMin, UnDesidrata.PrixMax);
-                BcpDesidratas[nAjout] = new C_TDesidrata(UnDesidrata.ID, UnDesidrata.IDC, UnDesidrata.Marque, UnDesidrata.Model,
-                    UnDesidrata.AnneeMin, UnDesidrata.AnneeMax, UnDesidrata.KmMin, UnDesidrata.KmMax, UnDesidrata.Couleur, UnDesidrata.PrixMin, UnDesidrata.PrixMax);
+
+                C_TClient Tmp2 = new G_TClient(chConnexion).Lire_ID(UnDesidrata.IDC);
+                UnDesidrata.Client = Tmp2.IDClient + "-" + Tmp2.CNom + "-" + Tmp2.CPrenom;
+
+                DesidrataSelectionnee[1] = UnDesidrata.Client.ToString();
+                DesidrataSelectionnee[2] = UnDesidrata.Marque.ToString();
+                DesidrataSelectionnee[3] = UnDesidrata.Model.ToString();
+                DesidrataSelectionnee[4] = UnDesidrata.AnneeMin.ToString();
+                DesidrataSelectionnee[5] = UnDesidrata.AnneeMax.ToString();
+                DesidrataSelectionnee[6] = UnDesidrata.KmMin.ToString();
+                DesidrataSelectionnee[7] = UnDesidrata.KmMax.ToString();
+                DesidrataSelectionnee[8] = UnDesidrata.Couleur.ToString();
+                DesidrataSelectionnee[9] = UnDesidrata.PrixMin.ToString();
+                DesidrataSelectionnee[10] = UnDesidrata.PrixMax.ToString();
             }
             ActiverUneFiche = false;
         }
@@ -134,7 +175,7 @@ namespace BDAutoWpf.ViewModel
         {
             if (DesidrataSelectionnee != null)
             {
-                C_TDesidrata Tmp = new G_TDesidrata(chConnexion).Lire_ID(DesidrataSelectionnee.IDDesidrata);
+                C_TDesidrata Tmp = new G_TDesidrata(chConnexion).Lire_ID(int.Parse(DesidrataSelectionnee[0].ToString()));
                 UnDesidrata = new VM_UnDesidrata();
                 UnDesidrata.ID = Tmp.IDDesidrata;
                 UnDesidrata.IDC = Tmp.IDClient;
@@ -149,36 +190,62 @@ namespace BDAutoWpf.ViewModel
                 UnDesidrata.PrixMax = Tmp.DPrixMax;
                 nAjout = BcpDesidratas.IndexOf(DesidrataSelectionnee);
                 ActiverUneFiche = true;
+                C_TClient Tmp2 = new G_TClient(chConnexion).Lire_ID(Tmp.IDClient);
+                UnDesidrata.Client = Tmp2.IDClient + "-" + Tmp2.CNom + "-" + Tmp2.CPrenom;
             }
         }
         public void Supprimer()
         {
             if (DesidrataSelectionnee != null)
             {
-                new G_TDesidrata(chConnexion).Supprimer(DesidrataSelectionnee.IDDesidrata);
+                new G_TDesidrata(chConnexion).Supprimer(int.Parse(DesidrataSelectionnee[0].ToString()));
                 BcpDesidratas.Remove(DesidrataSelectionnee);
             }
         }
-        public void EssaiSelMult(object lListe)
-        {
-            IList lTmp = (IList)lListe;
-            foreach (C_TDesidrata p in lTmp)
-            { string s = p.DMarque; }
-            int nTmp = lTmp.Count;
-        }
         public void DesidrataSelectionnee2UnDesidrata()
         {
-            UnDesidrata.ID = DesidrataSelectionnee.IDDesidrata;
-            UnDesidrata.IDC = DesidrataSelectionnee.IDClient;
-            UnDesidrata.Marque = DesidrataSelectionnee.DMarque;
-            UnDesidrata.Model = DesidrataSelectionnee.DModel;
-            UnDesidrata.AnneeMin = DesidrataSelectionnee.DAnneeMin;
-            UnDesidrata.AnneeMax = DesidrataSelectionnee.DAnneeMax;
-            UnDesidrata.KmMin = DesidrataSelectionnee.DKmMin;
-            UnDesidrata.KmMax = DesidrataSelectionnee.DKmMax;
-            UnDesidrata.Couleur = DesidrataSelectionnee.DCouleur;
-            UnDesidrata.PrixMin = DesidrataSelectionnee.DPrixMin;
-            UnDesidrata.PrixMax = DesidrataSelectionnee.DPrixMax;
+            UnDesidrata.ID =Convert.ToInt32(DesidrataSelectionnee[0].ToString());
+            decimal test ;
+            string[] s;
+            s = DesidrataSelectionnee[1].ToString().Split('-');
+
+            UnDesidrata.IDC = Convert.ToInt32(s[0]);
+            UnDesidrata.Marque = DesidrataSelectionnee[2].ToString();
+            UnDesidrata.Model = DesidrataSelectionnee[3].ToString();
+
+            if (decimal.TryParse(DesidrataSelectionnee[4].ToString(), out test))
+                UnDesidrata.AnneeMin = test;
+            else
+                UnDesidrata.AnneeMin = null;
+
+            if (decimal.TryParse(DesidrataSelectionnee[5].ToString(), out test))
+                UnDesidrata.AnneeMax = test;
+            else
+                UnDesidrata.AnneeMax = null;
+
+            if (decimal.TryParse(DesidrataSelectionnee[6].ToString(), out test))
+                UnDesidrata.KmMin = test;
+            else
+                UnDesidrata.KmMin = null;
+
+            if (decimal.TryParse(DesidrataSelectionnee[7].ToString(), out test))
+                UnDesidrata.KmMax = test;
+            else
+                UnDesidrata.KmMax = null;
+
+            UnDesidrata.Couleur = DesidrataSelectionnee[8].ToString();
+
+            if (decimal.TryParse(DesidrataSelectionnee[9].ToString(), out test))
+                UnDesidrata.PrixMin = test;
+            else
+                UnDesidrata.PrixMin = null;
+
+            if (decimal.TryParse(DesidrataSelectionnee[10].ToString(), out test))
+                UnDesidrata.PrixMax = test;
+            else
+                UnDesidrata.PrixMax = null;
+
+            UnDesidrata.Client = DesidrataSelectionnee[1].ToString();
         }
     }
     public class VM_UnDesidrata : BasePropriete
@@ -186,7 +253,13 @@ namespace BDAutoWpf.ViewModel
         private int _ID, _IDC;
         private string _Marque, _Model, _Couleur;
         private decimal ? _AnneeMin, _AnneeMax, _KmMin, _KmMax, _PrixMin, _PrixMax;
+        private string _Client;
 
+        public string Client
+        {
+            get { return _Client; }
+            set { AssignerChamp<string>(ref _Client, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
 
         public int ID
         {
