@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BDAutoWpf.View"
         mc:Ignorable="d"
-        Title="Prestation" Height="450" Width="600">
+        Title="Prestation" Height="450" Width="600" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300*"/>
-            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -32,15 +31,14 @@
             </Grid.ColumnDefinitions>
             <TextBlock Name="tID" Text="Identifiant" VerticalAlignment="Center" Margin="0,4" />
             <TextBox Name="tbID" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UnePrestation.ID, Mode=TwoWay}" />
+            Text="{Binding Path=UnePrestation.ID, Mode=TwoWay}" IsEnabled="False"/>
 
             <TextBlock Name="tNom" Text="Identifiant Transaction" Grid.Row="1" VerticalAlignment="Center" Margin="0,4" />
-            <TextBox Name="tbIDT" Grid.Row="1" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UnePrestation.IDT, Mode=TwoWay}" />
+            <ComboBox Name="cbIDT" Margin="3,3,45.8,3" Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Path=UnePrestation.IDT, Mode=TwoWay}"/>
 
             <TextBlock Name="tPr" Text="Identifiant Service" Grid.Row="2" VerticalAlignment="Center" Margin="0,4" />
-            <TextBox Name="tbIDS" Grid.Row="2" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UnePrestation.IDS, Mode=TwoWay}" />
+            <ComboBox Name="cbIDS" Margin="3,3,45.8,3" Grid.Row="2" Grid.Column="1" SelectedValue="{Binding Path=UnePrestation.Service, Mode=TwoWay}"/>
+            
 
             <TextBlock Name="tNo" Text="Nombre D'heures" Grid.Row="3" VerticalAlignment="Center" Margin="0,4" />
             <TextBox Name="tbNbHeure" Grid.Row="3" Grid.Column="1" Margin="3,3,45.8,3"
@@ -75,10 +73,6 @@
            Command="{Binding cModifier}" />
             <Button Name="bSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding cSupprimer}" />
-            <Button x:Name="bEssaiSelMult" Content="Sél. Mult." Margin="3" IsEnabled="{Binding ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding cEssaiSelMult}"
-           CommandParameter="{Binding ElementName=dgPrestations, Path=SelectedItems}" />
         </StackPanel>
-        <RichTextBox Name="rtbDoc" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2" Margin="0,0,-0.666,0" />
     </Grid>
 </Window>

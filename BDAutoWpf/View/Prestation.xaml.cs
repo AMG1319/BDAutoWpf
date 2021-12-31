@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BDAutoWpf.Classes;
 using System.IO;
+using BDAutoWpf.Gestion;
+using System.Configuration;
+
 namespace BDAutoWpf.View
 {
     /// <summary>
@@ -21,33 +24,31 @@ namespace BDAutoWpf.View
     public partial class Prestation : Window
     {
         private ViewModel.VM_Prestation LocalPrestation;
+        private string chConnexion = ConfigurationManager.ConnectionStrings["BDAutoWpf.Properties.Settings.BDConnexion"].ConnectionString;
         public Prestation()
         {
             InitializeComponent();
             LocalPrestation = new ViewModel.VM_Prestation();
             DataContext = LocalPrestation;
-            FlowDocument fd = new FlowDocument();
-            Paragraph p = new Paragraph();
-            p.Inlines.Add(new Bold(new Run("Titre de document")));
-            p.Inlines.Add(new LineBreak());
-            p.Inlines.Add(new Run("Liste des personnes encodées"));
-            fd.Blocks.Add(p);
-            List l = new List();
-            foreach (C_TPrestation cp in LocalPrestation.BcpPrestations)
-            {
-                Paragraph pl = new Paragraph(new Run(cp.IDTransaction + " " + cp.IDService));
-                l.ListItems.Add(new ListItem(pl));
-            }
-            fd.Blocks.Add(l);
-            rtbDoc.Document = fd;
-            FileStream fs = new FileStream(@"D:\WPF-Winforms\essai.rtf", FileMode.Create);
-            TextRange tr = new TextRange(rtbDoc.Document.ContentStart, rtbDoc.Document.ContentEnd);
-            tr.Save(fs, DataFormats.Rtf);
         }
 
         private void dgPrestations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgPrestations.SelectedIndex >= 0) LocalPrestation.PrestationSelectionnee2UnePrestation();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<C_TService> lTmp = new G_TService(chConnexion).Lire("SNom");
+            foreach (C_TService Tmp in lTmp)
+            {
+                cbIDS.Items.Add(Tmp.IDService + "-" + Tmp.SNom);
+            }
+            List<C_TTransaction> lTmp2 = new G_TTransaction(chConnexion).Lire("IDTransaction");
+            foreach (C_TTransaction Tmp2 in lTmp2)
+            {
+                cbIDT.Items.Add(Tmp2.IDTransaction);
+            }
         }
     }
 }

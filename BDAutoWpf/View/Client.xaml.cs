@@ -26,23 +26,6 @@ namespace BDAutoWpf.View
             InitializeComponent();
             LocalClient = new ViewModel.VM_Client();
             DataContext = LocalClient;
-            FlowDocument fd = new FlowDocument();
-            Paragraph p = new Paragraph();
-            p.Inlines.Add(new Bold(new Run("Titre de document")));
-            p.Inlines.Add(new LineBreak());
-            p.Inlines.Add(new Run("Liste des personnes encodées"));
-            fd.Blocks.Add(p);
-            List l = new List();
-            foreach (C_TClient cp in LocalClient.BcpClients)
-            {
-                Paragraph pl = new Paragraph(new Run(cp.CNom + " " + cp.CPrenom));
-                l.ListItems.Add(new ListItem(pl));
-            }
-            fd.Blocks.Add(l);
-            rtbDoc.Document = fd;
-            FileStream fs = new FileStream(@"D:\WPF-Winforms\essai.rtf", FileMode.Create);
-            TextRange tr = new TextRange(rtbDoc.Document.ContentStart, rtbDoc.Document.ContentEnd);
-            tr.Save(fs, DataFormats.Rtf);
         }
 
         private void dgClients_SelectionChanged(object sender, SelectionChangedEventArgs e)

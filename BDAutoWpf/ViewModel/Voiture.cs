@@ -57,7 +57,6 @@ namespace BDAutoWpf.ViewModel
         public BaseCommande cAjouter { get; set; }
         public BaseCommande cModifier { get; set; }
         public BaseCommande cSupprimer { get; set; }
-        public BaseCommande cEssaiSelMult { get; set; }
         #endregion
         public VM_Voiture()
         {
@@ -77,7 +76,6 @@ namespace BDAutoWpf.ViewModel
             cAjouter = new BaseCommande(Ajouter);
             cModifier = new BaseCommande(Modifier);
             cSupprimer = new BaseCommande(Supprimer);
-            cEssaiSelMult = new BaseCommande(EssaiSelMult);
         }
         private ObservableCollection<C_TVoiture> ChargerVoitures(string chConn)
         {
@@ -134,13 +132,7 @@ namespace BDAutoWpf.ViewModel
                 BcpVoitures.Remove(VoitureSelectionnee);
             }
         }
-        public void EssaiSelMult(object lListe)
-        {
-            IList lTmp = (IList)lListe;
-            foreach (C_TVoiture p in lTmp)
-            { string s = p.VMarque; }
-            int nTmp = lTmp.Count;
-        }
+
         public void VoitureSelectionnee2UneVoiture()
         {
             UneVoiture.ID = VoitureSelectionnee.IDVoiture;

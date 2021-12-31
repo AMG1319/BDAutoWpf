@@ -69,7 +69,6 @@ namespace BDAutoWpf.ViewModel
         public BaseCommande cAjouter { get; set; }
         public BaseCommande cModifier { get; set; }
         public BaseCommande cSupprimer { get; set; }
-        public BaseCommande cEssaiSelMult { get; set; }
         #endregion
         public VM_Client()
         {
@@ -89,7 +88,6 @@ namespace BDAutoWpf.ViewModel
             cAjouter = new BaseCommande(Ajouter);
             cModifier = new BaseCommande(Modifier);
             cSupprimer = new BaseCommande(Supprimer);
-            cEssaiSelMult = new BaseCommande(EssaiSelMult);
         }
         private ObservableCollection<C_TClient> ChargerClients(string chConn)
         {
@@ -145,13 +143,7 @@ namespace BDAutoWpf.ViewModel
                 BcpClients.Remove(ClientSelectionnee);
             }
         }
-        public void EssaiSelMult(object lListe)
-        {
-            IList lTmp = (IList)lListe;
-            foreach (C_TClient p in lTmp)
-            { string s = p.CNom; }
-            int nTmp = lTmp.Count;
-        }
+
         public void ClientSelectionnee2UnClient()
         {
             UnClient.ID = ClientSelectionnee.IDClient;

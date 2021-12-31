@@ -178,7 +178,6 @@ namespace BDAutoWpf.ViewModel
 
             UneTransaction.Type = TransactionSelectionnee[3].ToString();
             UneTransaction.Prix = Convert.ToDecimal(TransactionSelectionnee[4].ToString());
-            //MessageBox.Show(""+TransactionSelectionnee[5]);
             UneTransaction.Dt = Convert.ToDateTime(TransactionSelectionnee[5].ToString());
 
             UneTransaction.Client = TransactionSelectionnee[1].ToString();

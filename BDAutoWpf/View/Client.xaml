@@ -8,8 +8,7 @@
         Title="Client" Height="450" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300*"/>
-            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -81,10 +80,6 @@
            Command="{Binding cModifier}" />
             <Button Name="bSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding cSupprimer}" />
-            <Button x:Name="bEssaiSelMult" Content="Sél. Mult." Margin="3" IsEnabled="{Binding ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding cEssaiSelMult}"
-           CommandParameter="{Binding ElementName=dgClients, Path=SelectedItems}" />
         </StackPanel>
-        <RichTextBox Name="rtbDoc" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2" Margin="0,0,-0.666,0" />
     </Grid>
 </Window>
