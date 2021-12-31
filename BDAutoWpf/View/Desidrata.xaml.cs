@@ -31,23 +31,6 @@ namespace BDAutoWpf.View
             InitializeComponent();
             LocalDesidrata = new ViewModel.VM_Desidrata();
             DataContext = LocalDesidrata;
-           /* FlowDocument fd = new FlowDocument();
-            Paragraph p = new Paragraph();
-            p.Inlines.Add(new Bold(new Run("Titre de document")));
-            p.Inlines.Add(new LineBreak());
-            p.Inlines.Add(new Run("Liste des personnes encodées"));
-            fd.Blocks.Add(p);
-            List l = new List();
-            foreach (C_TDesidrata cp in LocalDesidrata.BcpDesidratas)
-            {
-                Paragraph pl = new Paragraph(new Run(cp.IDClient+ " " + cp.DMarque));
-                l.ListItems.Add(new ListItem(pl));
-            }
-            fd.Blocks.Add(l);
-            rtbDoc.Document = fd;
-            FileStream fs = new FileStream(@"D:\WPF-Winforms\essai.rtf", FileMode.Create);
-            TextRange tr = new TextRange(rtbDoc.Document.ContentStart, rtbDoc.Document.ContentEnd);
-            tr.Save(fs, DataFormats.Rtf);*/
         }
 
         private void dgDesidratas_SelectionChanged(object sender, SelectionChangedEventArgs e)

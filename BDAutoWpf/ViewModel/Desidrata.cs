@@ -128,11 +128,11 @@ namespace BDAutoWpf.ViewModel
         }
         public void Confirmer()
         {
+            string[] s;
+            s = UnDesidrata.Client.Split('-');
+            UnDesidrata.IDC = Convert.ToInt32(s[0]);
             if (nAjout == -1)
-            {
-                string [] s;
-                s = UnDesidrata.Client.Split('-');
-                UnDesidrata.IDC = Convert.ToInt32(s[0]);
+            {                
                 UnDesidrata.ID = new G_TDesidrata(chConnexion).Ajouter(UnDesidrata.IDC,UnDesidrata.Marque,UnDesidrata.Model,
                     UnDesidrata.AnneeMin,UnDesidrata.AnneeMax,UnDesidrata.KmMin,UnDesidrata.KmMax,UnDesidrata.Couleur,UnDesidrata.PrixMin,UnDesidrata.PrixMax);
                 C_TClient Tmp = new G_TClient(chConnexion).Lire_ID(UnDesidrata.IDC);
@@ -141,14 +141,9 @@ namespace BDAutoWpf.ViewModel
             }
             else
             {
-                string[] s;
-                s = UnDesidrata.Client.Split('-');
-                UnDesidrata.IDC = Convert.ToInt32(s[0]);
                 new G_TDesidrata(chConnexion).Modifier(UnDesidrata.ID, UnDesidrata.IDC, UnDesidrata.Marque, UnDesidrata.Model,
                     UnDesidrata.AnneeMin, UnDesidrata.AnneeMax, UnDesidrata.KmMin, UnDesidrata.KmMax, UnDesidrata.Couleur, UnDesidrata.PrixMin, UnDesidrata.PrixMax);
 
-                C_TClient Tmp2 = new G_TClient(chConnexion).Lire_ID(UnDesidrata.IDC);
-                UnDesidrata.Client = Tmp2.IDClient + "-" + Tmp2.CNom + "-" + Tmp2.CPrenom;
 
                 DesidrataSelectionnee[1] = UnDesidrata.Client.ToString();
                 DesidrataSelectionnee[2] = UnDesidrata.Marque.ToString();

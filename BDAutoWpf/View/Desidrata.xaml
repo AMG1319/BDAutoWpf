@@ -37,7 +37,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Name="tID" Text="Identifiant" VerticalAlignment="Center" Margin="0,4" />
             <TextBox Name="tbID" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UnDesidrata.ID, Mode=TwoWay}" IsEnabled="True"/>
+            Text="{Binding Path=UnDesidrata.ID, Mode=TwoWay}" IsEnabled="False"/>
 
             <TextBlock Name="tIDC" Text="Identifiant Client" Grid.Row="1" VerticalAlignment="Center" Margin="0,4" />
             <ComboBox Name="cbIDC" Margin="3,3,45.8,3" Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Path=UnDesidrata.Client, Mode=TwoWay}"/>
@@ -104,15 +104,15 @@
                 <DataGridTextColumn Header="Prix Max." Binding="{Binding Path=DPrixMax}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="182,2.6,185.6,3.4" Width="226" >
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="208,2.6,215.6,3.4" Width="170" >
             <Button Name="bAjouter" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding cAjouter}" />
             <Button Name="bModifier" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding cModifier}" />
             <Button Name="bSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding cSupprimer}" />
-            
+
         </StackPanel>
-        
+
     </Grid>
 </Window>
