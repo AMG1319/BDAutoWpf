@@ -20,14 +20,18 @@ namespace BDAutoWpf
     /// </summary>
     public partial class TableauDeBord : Window
     {
+        private ViewModel.VM_TableauDeBord LocalTableauDeBord;
         public TableauDeBord()
         {
             InitializeComponent();
+            LocalTableauDeBord = new ViewModel.VM_TableauDeBord();
+            DataContext = LocalTableauDeBord;
+            bEncoderPresta.IsEnabled = false;
         }
         private void btnAjouterVoiture_Click(object sender, RoutedEventArgs e)
         {
             View.Voiture f = new View.Voiture();
-            f.ShowDialog();
+            f.ShowDialog();            
         }
         private void btnAjouterClient_Click(object sender, RoutedEventArgs e)
         {
@@ -60,6 +64,30 @@ namespace BDAutoWpf
         {
             View.Transaction f = new View.Transaction();
             f.ShowDialog();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void dgTransactions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgServices.SelectedIndex >= 0 && dgTransactions.SelectedIndex >=0)
+            {
+                bEncoderPresta.IsEnabled = true;
+                LocalTableauDeBord.aff();
+            }
+
+        }
+
+        private void dgServices_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgServices.SelectedIndex >= 0 && dgTransactions.SelectedIndex >= 0)
+            {
+                bEncoderPresta.IsEnabled = true;
+                LocalTableauDeBord.aff();
+            }
         }
     }
 }

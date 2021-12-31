@@ -32,7 +32,7 @@ namespace BDAutoWpf.View
 
         private void dgClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgServices.SelectedIndex >= 0) LocalService.ClientSelectionnee2UnClient();
+            if (dgServices.SelectedIndex >= 0) LocalService.ClientSelectionnee2UnClient();            
         }
         
     }

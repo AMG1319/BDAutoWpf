@@ -5,14 +5,79 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BDAutoWpf"
         mc:Ignorable="d"
-         Title="Tableau de bord" Height="300" Width="300" Background="Black">
-    <StackPanel VerticalAlignment="Center">
-        <Button Name="btnAjouterPrestation" Content="Nouvelle Prestation" Margin="5" Click="btnAjouterPrestation_Click"/>
-        <Button Name="btnAjouterTransaction" Content="Nouvelle Transaction" Margin="5" Click="btnAjouterTransaction_Click"/>
-        <Button Name="btnAjouterVoiture" Content="Nouvelle Auto" Margin="5" Click="btnAjouterVoiture_Click"/>
-        <Button Name="btnAjouterService" Content="Nouveau Service" Margin="5" Click="btnAjouterService_Click"/>
-        <Button Name="btnAjouterClient" Content="Nouveau Client" Margin="5" Click="btnAjouterClient_Click"/>
-        <Button Name="btnAjouterDesidrata" Content="Nouveau Desidrata" Margin="5" Click="btnAjouterDesidrata_Click"/>
-        <Button Name="btnQuitter" Content="Quitter" Margin="5" Click="btnQuitter_Click"/>
-    </StackPanel>
+         Title="Tableau de bord" Height="500" Width="800" Background="Black" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <StackPanel VerticalAlignment="Center">
+                <Button Name="btnAjouterPrestation" Content="Nouvelle Prestation" Margin="5" Click="btnAjouterPrestation_Click"/>
+                <Button Name="btnAjouterTransaction" Content="Nouvelle Transaction" Margin="5" Click="btnAjouterTransaction_Click"/>
+                <Button Name="btnAjouterVoiture" Content="Nouvelle Auto" Margin="5" Click="btnAjouterVoiture_Click"/>
+                <Button Name="btnAjouterService" Content="Nouveau Service" Margin="5" Click="btnAjouterService_Click"/>
+                <Button Name="btnAjouterClient" Content="Nouveau Client" Margin="5" Click="btnAjouterClient_Click"/>
+                <Button Name="btnAjouterDesidrata" Content="Nouveau Desidrata" Margin="5" Click="btnAjouterDesidrata_Click"/>
+                <Button Name="btnQuitter" Content="Quitter" Margin="5" Click="btnQuitter_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1">
+            <TabControl>
+                <TabItem Header="Encoder Prestation">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="80"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <DataGrid Name="dgTransactions" ItemsSource="{Binding Path=BcpTransactions}" Grid.Row="1" VerticalScrollBarVisibility="Visible"
+                                    IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                                    SelectedItem="{Binding TransactionSelectionnee, Mode=TwoWay}" SelectionChanged="dgTransactions_SelectionChanged" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=IDTransaction}" />
+                                        <DataGridTextColumn Header="Identifiant Client" Binding="{Binding Path=IDClient}" Width="Auto" />
+                                        <DataGridTextColumn Header="Identifiant Voiture" Binding="{Binding Path=IDVoiture}" Width="Auto" />
+                                        <DataGridTextColumn Header="Type" Binding="{Binding Path=TType}" Width="Auto" />
+                                        <DataGridTextColumn Header="Prix" Binding="{Binding Path=TPrix}" Width="Auto" />
+                                        <DataGridTextColumn Header="Date" Binding="{Binding Path=TDate}" Width="Auto" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <DataGrid Name="dgServices" ItemsSource="{Binding Path=BcpServices}"  VerticalScrollBarVisibility="Visible"
+                                    IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                                     SelectedItem="{Binding ServiceSelectionnee, Mode=TwoWay}" SelectionChanged="dgServices_SelectionChanged" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=IDService}" />
+                                        <DataGridTextColumn Header="Nom" Binding="{Binding Path=SNom}" Width="*" />
+                                        <DataGridTextColumn Header="Prix" Binding="{Binding Path=SPrix}" Width="*" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Button Name="bEncoderPresta" Content="Encoder une prestation" Margin="3" 
+                                Command="{Binding cEncoderPresta}" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Encoder Transaction"></TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
 </Window>

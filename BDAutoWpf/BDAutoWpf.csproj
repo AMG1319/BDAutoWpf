@@ -63,6 +63,7 @@
     <Compile Include="ViewModel\Desidrata.cs" />
     <Compile Include="ViewModel\Prestation.cs" />
     <Compile Include="ViewModel\Service.cs" />
+    <Compile Include="ViewModel\TableauDeBord.cs" />
     <Compile Include="ViewModel\Transaction.cs" />
     <Compile Include="ViewModel\Voiture.cs" />
     <Compile Include="View\Client.xaml.cs">

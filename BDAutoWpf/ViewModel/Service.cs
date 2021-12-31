@@ -15,6 +15,7 @@ namespace BDAutoWpf.ViewModel
         private string chConnexion = ConfigurationManager.ConnectionStrings["BDAutoWpf.Properties.Settings.BDConnexion"].ConnectionString;
         private int nAjout;
         private bool _ActiverUneFiche;
+
         public bool ActiverUneFiche
         {
             get { return _ActiverUneFiche; }
