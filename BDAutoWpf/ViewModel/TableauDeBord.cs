@@ -21,16 +21,8 @@ namespace BDAutoWpf.ViewModel
         public ObservableCollection<C_TClient> rep2 = new ObservableCollection<C_TClient>();
         public ObservableCollection<C_TVoiture> rep3 = new ObservableCollection<C_TVoiture>();
         public BindingSource rep4 = new BindingSource();
-
-        #region Accesseur
-        private int _NbHeure;
-        public int NbHeure
-        {
-            get { return _NbHeure; }
-            set { AssignerChamp<int>(ref _NbHeure, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
-        }
-        #endregion
         public BaseCommande cEncoderPresta { get; set; }
+        public BaseCommande cEncoderTransac { get; set; }
         public VM_TableauDeBord()
         {
             BcpTransactions = ChargerTransactions(chConnexion);
@@ -38,8 +30,36 @@ namespace BDAutoWpf.ViewModel
             BcpClients = ChargerClients(chConnexion);
             BcpVoitures = ChargerVoitures(chConnexion);
             cEncoderPresta = new BaseCommande(EncoderPresta);
+            cEncoderTransac = new BaseCommande(EncoderTransac);
         }
 
+        #region Accesseur
+        private int _NbHeure;
+        private decimal _Prix;
+        private DateTime _Dt;
+        private string _Type;
+        public int NbHeure
+        {
+            get { return _NbHeure; }
+            set { AssignerChamp<int>(ref _NbHeure, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
+        public string TypeT
+        {
+            get { return _Type; }
+            set { AssignerChamp<string>(ref _Type, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
+
+        public decimal Prix
+        {
+            get { return _Prix; }
+            set { AssignerChamp<decimal>(ref _Prix, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
+        public DateTime Dt
+        {
+            get { return _Dt; }
+            set { AssignerChamp<DateTime>(ref _Dt, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
+        #endregion      
         #region Selectionnee
         private C_TService _ServiceSelectionnee;
         public C_TService ServiceSelectionnee
@@ -127,7 +147,6 @@ namespace BDAutoWpf.ViewModel
         #region ChargerDGV
         private BindingSource ChargerTransactions(string chConn)
         {
-            //rep4.Clear();
             dtTransaction.Clear();
             if(cpt == true)
             {
@@ -175,11 +194,19 @@ namespace BDAutoWpf.ViewModel
             return rep3;
         }
         #endregion
+        #region Methode
         public void EncoderPresta()
         {
              new G_TPrestation(chConnexion).Ajouter(int.Parse(TransactionSelectionnee[0].ToString()), ServiceSelectionnee.IDService, 
                 NbHeure, NbHeure*ServiceSelectionnee.SPrix);
             MessageBox.Show("La prestation a bien été encodée");
+            Refresh();
+        }
+        public void EncoderTransac()
+        {
+            new G_TTransaction(chConnexion).Ajouter(ClientSelectionnee.IDClient, VoitureSelectionnee.IDVoiture, TypeT, Prix, Dt);
+            MessageBox.Show("La transaction a bien été encodée");
+            Refresh();
         }
         public void Refresh()
         {
@@ -188,6 +215,7 @@ namespace BDAutoWpf.ViewModel
             BcpClients = ChargerClients(chConnexion);
             BcpVoitures = ChargerVoitures(chConnexion);
         }
-        
+        #endregion
+
     }
 }

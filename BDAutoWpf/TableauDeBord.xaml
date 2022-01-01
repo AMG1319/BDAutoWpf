@@ -47,6 +47,10 @@
                                         <DataGridTextColumn Header="Prix" Binding="{Binding Path=TPrix}" Width="Auto" />
                                         <DataGridTextColumn Header="Date" Binding="{Binding Path=TDate}" Width="Auto" />
                                     </DataGrid.Columns>
+                                    <DataGrid.Resources>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Blue"/>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White"/>
+                                    </DataGrid.Resources>
                                 </DataGrid>
                             </Grid>
                             <Grid Grid.Column="1">
@@ -58,7 +62,11 @@
                                         <DataGridTextColumn Header="Nom" Binding="{Binding Path=SNom}" Width="*" />
                                         <DataGridTextColumn Header="Prix" Binding="{Binding Path=SPrix}" Width="*" />
                                     </DataGrid.Columns>
-                                </DataGrid>
+                                    <DataGrid.Resources>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Blue"/>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White"/>
+                                    </DataGrid.Resources>
+                                </DataGrid>                                
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1">
@@ -101,6 +109,10 @@
                                         <DataGridTextColumn Header="Email" Binding="{Binding Path=CMail}" Width="*" />
                                         <DataGridTextColumn Header="Code Postal" Binding="{Binding Path=CCodePostal}" Width="*" />
                                     </DataGrid.Columns>
+                                    <DataGrid.Resources>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Blue"/>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White"/>
+                                    </DataGrid.Resources>
                                 </DataGrid>
                             </Grid>
                             <Grid Grid.Column="1">
@@ -116,6 +128,10 @@
                                         <DataGridTextColumn Header="Couleur" Binding="{Binding Path=VCouleur}" Width="*" />
                                         <DataGridTextColumn Header="Prix" Binding="{Binding Path=VPrix}" Width="*" />
                                     </DataGrid.Columns>
+                                    <DataGrid.Resources>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Blue"/>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White"/>
+                                    </DataGrid.Resources>
                                 </DataGrid>
                             </Grid>
                         </Grid>
@@ -125,17 +141,24 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <!--<TextBlock Name="tNbH" Text="Nombre d'heures prestées" VerticalAlignment="Center" />
-                                <TextBox Name="tbNbHeure" Height="20"
-                                Text="{Binding Path=NbHeure, Mode=TwoWay}" Margin="154,10,343.667,10" />-->
+                                <TextBlock Name="tNo" Text="Type de transaction"  VerticalAlignment="Center" Height="18" Margin="0,12,527.667,10"/>
+                                <ComboBox Name="cbType"  SelectedValue="{Binding Path=TypeT, Mode=TwoWay}" Margin="109,12,436.667,10"/>
+
+
+                                <TextBlock Name="tN" Text="Prix" VerticalAlignment="Center" Height="16" Margin="247,14,354.667,10" />
+                                <TextBox Name="tbPrix" Text="{Binding Path=Prix, Mode=TwoWay}" Margin="282,14,250.667,10" />
+
+                                <TextBlock Name="t" Text="Date" VerticalAlignment="Center" Height="16" Margin="434,14,151.667,10"  />
+                                <DatePicker Name="dpNai"  SelectedDate="{Binding Path=Dt, Mode=TwoWay, StringFormat='dd/mm/yyyy'}" Margin="485,11,48.667,6" />
                             </Grid>
                             <Grid Grid.Row="1">
-                                <!--<Button Name="bEncoderPresta" Content="Encoder une prestation" Margin="3" 
-                                Command="{Binding cEncoderPresta}" />-->
+                                <Button Name="bEncoderTransac" Content="Encoder une Transaction" Margin="3" 
+                                Command="{Binding cEncoderTransac}" />
                             </Grid>
                         </Grid>
                     </Grid>
                 </TabItem>
+
 
             </TabControl>
         </Grid>

@@ -27,6 +27,7 @@ namespace BDAutoWpf
             LocalTableauDeBord = new ViewModel.VM_TableauDeBord();
             DataContext = LocalTableauDeBord;
             bEncoderPresta.IsEnabled = false;
+            bEncoderTransac.IsEnabled = false;
         }
         private void btnAjouterVoiture_Click(object sender, RoutedEventArgs e)
         {
@@ -86,16 +87,19 @@ namespace BDAutoWpf
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            cbType.Items.Add("Achat");
+            cbType.Items.Add("Vente");
         }
 
         private void dgTransactions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             if (dgServices.SelectedIndex >= 0 && dgTransactions.SelectedIndex >=0)
             {
                 bEncoderPresta.IsEnabled = true;
-                //LocalTableauDeBord.aff();
             }
+            else
+                bEncoderPresta.IsEnabled = false;
 
         }
 
@@ -104,18 +108,29 @@ namespace BDAutoWpf
             if (dgServices.SelectedIndex >= 0 && dgTransactions.SelectedIndex >= 0)
             {
                 bEncoderPresta.IsEnabled = true;
-                //LocalTableauDeBord.aff();
             }
+            else
+                bEncoderPresta.IsEnabled = false;
         }
 
         private void dgVoitures_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (dgVoitures.SelectedIndex >= 0 && dgClients.SelectedIndex >= 0)
+            {
+                bEncoderTransac.IsEnabled = true;
+            }
+            else
+                bEncoderTransac.IsEnabled = false;
         }
 
         private void dgClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (dgVoitures.SelectedIndex >= 0 && dgClients.SelectedIndex >= 0)
+            {
+                bEncoderTransac.IsEnabled = true;
+            }
+            else
+                bEncoderTransac.IsEnabled = false;
         }
     }
 }
