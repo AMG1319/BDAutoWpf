@@ -31,17 +31,26 @@ namespace BDAutoWpf
         private void btnAjouterVoiture_Click(object sender, RoutedEventArgs e)
         {
             View.Voiture f = new View.Voiture();
-            f.ShowDialog();            
+            Hide();
+            f.ShowDialog();
+            Show();
+            LocalTableauDeBord.Refresh();
         }
         private void btnAjouterClient_Click(object sender, RoutedEventArgs e)
         {
             View.Client f = new View.Client();
+            Hide();
             f.ShowDialog();
+            Show();
+            LocalTableauDeBord.Refresh();
         }
         private void btnAjouterService_Click(object sender, RoutedEventArgs e)
         {
             View.Service f = new View.Service();
+            Hide();
             f.ShowDialog();
+            Show();
+            LocalTableauDeBord.Refresh();
         }
         private void btnQuitter_Click(object sender, RoutedEventArgs e)
         {
@@ -51,7 +60,10 @@ namespace BDAutoWpf
         private void btnAjouterDesidrata_Click(object sender, RoutedEventArgs e)
         {
             View.Desidrata f = new View.Desidrata();
+            Hide();
             f.ShowDialog();
+            Show();
+            LocalTableauDeBord.Refresh();
         }
 
         private void btnAjouterPrestation_Click(object sender, RoutedEventArgs e)
@@ -60,12 +72,16 @@ namespace BDAutoWpf
             Hide();
             f.ShowDialog();
             Show();
+            LocalTableauDeBord.Refresh();
         }
 
         private void btnAjouterTransaction_Click(object sender, RoutedEventArgs e)
         {
             View.Transaction f = new View.Transaction();
+            Hide();
             f.ShowDialog();
+            Show();
+            LocalTableauDeBord.Refresh();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -90,6 +106,16 @@ namespace BDAutoWpf
                 bEncoderPresta.IsEnabled = true;
                 //LocalTableauDeBord.aff();
             }
+        }
+
+        private void dgVoitures_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void dgClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
