@@ -53,10 +53,12 @@ namespace BDAutoWpf.ViewModel
             get { return _BcpTransactions; }
             set { _BcpTransactions = value; }
         }
+        public BaseCommande cEncoderPresta { get; set; }
         public VM_TableauDeBord()
         {
             BcpTransactions = ChargerTransactions(chConnexion);
             BcpServices = ChargerServices(chConnexion);
+            cEncoderPresta = new BaseCommande(EncoderPresta);
         }
         private BindingSource ChargerTransactions(string chConn)
         {
@@ -86,10 +88,22 @@ namespace BDAutoWpf.ViewModel
                 rep.Add(Tmp);
             return rep;
         }
+        private int _NbHeure;
+        public int NbHeure
+        {
+            get { return _NbHeure; }
+            set { AssignerChamp<int>(ref _NbHeure, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
         public void aff()
         {
             MessageBox.Show("Transac = " + TransactionSelectionnee[1].ToString());
             MessageBox.Show("Service = " + ServiceSelectionnee.SNom);
+        }
+        public void EncoderPresta()
+        {
+             new G_TPrestation(chConnexion).Ajouter(int.Parse(TransactionSelectionnee[0].ToString()), ServiceSelectionnee.IDService, 
+                NbHeure, NbHeure*ServiceSelectionnee.SPrix);
+            MessageBox.Show("La prestation a bien été encodée");
         }
     }
 }

@@ -50,6 +50,7 @@ namespace BDAutoWpf.View
             {
                 cbIDV.Items.Add(Tmp1.IDVoiture + "-" + Tmp1.VMarque + "-" + Tmp1.VModel);
             }
+
             cbType.Items.Add("Achat");
             cbType.Items.Add("Vente");
         }

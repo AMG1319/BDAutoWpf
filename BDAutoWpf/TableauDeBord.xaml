@@ -67,7 +67,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                
+                                <TextBlock Name="tNbH" Text="Nombre d'heures prestées" VerticalAlignment="Center" />
+                                <TextBox Name="tbNbHeure" Height="20"
+                                Text="{Binding Path=NbHeure, Mode=TwoWay}" Margin="154,10,343.667,10" />
                             </Grid>
                             <Grid Grid.Row="1">
                                 <Button Name="bEncoderPresta" Content="Encoder une prestation" Margin="3" 
@@ -77,6 +79,7 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Encoder Transaction"></TabItem>
+
             </TabControl>
         </Grid>
     </Grid>

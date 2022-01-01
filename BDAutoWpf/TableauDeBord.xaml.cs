@@ -57,7 +57,9 @@ namespace BDAutoWpf
         private void btnAjouterPrestation_Click(object sender, RoutedEventArgs e)
         {
             View.Prestation f = new View.Prestation();
+            Hide();
             f.ShowDialog();
+            Show();
         }
 
         private void btnAjouterTransaction_Click(object sender, RoutedEventArgs e)
@@ -76,7 +78,7 @@ namespace BDAutoWpf
             if (dgServices.SelectedIndex >= 0 && dgTransactions.SelectedIndex >=0)
             {
                 bEncoderPresta.IsEnabled = true;
-                LocalTableauDeBord.aff();
+                //LocalTableauDeBord.aff();
             }
 
         }
@@ -86,7 +88,7 @@ namespace BDAutoWpf
             if (dgServices.SelectedIndex >= 0 && dgTransactions.SelectedIndex >= 0)
             {
                 bEncoderPresta.IsEnabled = true;
-                LocalTableauDeBord.aff();
+                //LocalTableauDeBord.aff();
             }
         }
     }
