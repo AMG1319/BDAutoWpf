@@ -13,6 +13,7 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <StackPanel VerticalAlignment="Center">
+                <Button Name="btnAfficherStock" Content="Stock de voiture" Margin="5" Click="btnAfficherStock_Click"/>
                 <Button Name="btnAjouterPrestation" Content="Nouvelle Prestation" Margin="5" Click="btnAjouterPrestation_Click"/>
                 <Button Name="btnAjouterTransaction" Content="Nouvelle Transaction" Margin="5" Click="btnAjouterTransaction_Click"/>
                 <Button Name="btnAjouterVoiture" Content="Nouvelle Auto" Margin="5" Click="btnAjouterVoiture_Click"/>

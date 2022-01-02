@@ -63,6 +63,7 @@
     <Compile Include="ViewModel\Desidrata.cs" />
     <Compile Include="ViewModel\Prestation.cs" />
     <Compile Include="ViewModel\Service.cs" />
+    <Compile Include="ViewModel\StockHtml.cs" />
     <Compile Include="ViewModel\TableauDeBord.cs" />
     <Compile Include="ViewModel\Transaction.cs" />
     <Compile Include="ViewModel\Voiture.cs" />
@@ -77,6 +78,9 @@
     </Compile>
     <Compile Include="View\Service.xaml.cs">
       <DependentUpon>Service.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StockHtml.xaml.cs">
+      <DependentUpon>StockHtml.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Transaction.xaml.cs">
       <DependentUpon>Transaction.xaml</DependentUpon>
@@ -109,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Service.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StockHtml.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

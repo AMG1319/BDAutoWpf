@@ -90,8 +90,7 @@ namespace BDAutoWpf
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             cbType.Items.Add("Achat");
-            cbType.Items.Add("Vente");
-                       
+            cbType.Items.Add("Vente");                       
         }
 
         private void dgTransactions_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -148,6 +147,14 @@ namespace BDAutoWpf
                     dgVtr.SelectedItems.Add(v);
                 }
             }
+        }
+        private void btnAfficherStock_Click(object sender, RoutedEventArgs e)
+        {
+            View.StockHtml f = new View.StockHtml();
+            Hide();
+            f.ShowDialog();
+            Show();
+            LocalTableauDeBord.Refresh();
         }
     }
 }
