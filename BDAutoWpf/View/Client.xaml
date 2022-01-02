@@ -32,7 +32,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Name="tID" Text="Identifiant" VerticalAlignment="Center" Margin="0,4" />
             <TextBox Name="tbID" Grid.Column="1" Margin="3,3,45.8,3"
-            Text="{Binding Path=UnClient.ID, Mode=TwoWay}" />
+            Text="{Binding Path=UnClient.ID, Mode=TwoWay}" IsEnabled="False" />
 
             <TextBlock Name="tNom" Text="Nom" Grid.Row="1" VerticalAlignment="Center" Margin="0,4" />
             <TextBox Name="tbNom" Grid.Row="1" Grid.Column="1" Margin="3,3,45.8,3"

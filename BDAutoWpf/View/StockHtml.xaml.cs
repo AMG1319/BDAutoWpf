@@ -27,6 +27,5 @@ namespace BDAutoWpf.View
             LocalStock.GenererHTML();
             wbStock.Navigate(@"D:\WPF-Winforms\BDAutoStock.HTML");
         }
-        //this.wbStock.Navigate(@"D:\WPF-Winforms\BDAutoStock.HTML");
     }
 }

@@ -183,8 +183,8 @@
                                         <DataGridTextColumn Header="Prix" Binding="{Binding Path=VPrix}" Width="*" />
                                     </DataGrid.Columns>
                                     <DataGrid.Resources>
-                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="LightSkyBlue"/>
-                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="Black"/>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Blue"/>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White"/>
                                     </DataGrid.Resources>
                                 </DataGrid>
                             </Grid>
