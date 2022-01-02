@@ -21,6 +21,10 @@ namespace BDAutoWpf.ViewModel
         public ObservableCollection<C_TClient> rep2 = new ObservableCollection<C_TClient>();
         public ObservableCollection<C_TVoiture> rep3 = new ObservableCollection<C_TVoiture>();
         public BindingSource rep4 = new BindingSource();
+        public ObservableCollection<C_TVoiture> rep5 = new ObservableCollection<C_TVoiture>();
+        public ObservableCollection<C_TClient> rep6 = new ObservableCollection<C_TClient>();
+        List<C_TVoiture> Stock = new List<C_TVoiture>();
+        List<C_TVoiture> VtrInterest = new List<C_TVoiture>();
         public BaseCommande cEncoderPresta { get; set; }
         public BaseCommande cEncoderTransac { get; set; }
         public VM_TableauDeBord()
@@ -29,6 +33,8 @@ namespace BDAutoWpf.ViewModel
             BcpServices = ChargerServices(chConnexion);
             BcpClients = ChargerClients(chConnexion);
             BcpVoitures = ChargerVoitures(chConnexion);
+            BcpVtr = ChargerVtr(chConnexion);
+            BcpCl = ChargerCl(chConnexion);
             cEncoderPresta = new BaseCommande(EncoderPresta);
             cEncoderTransac = new BaseCommande(EncoderTransac);
         }
@@ -85,34 +91,17 @@ namespace BDAutoWpf.ViewModel
             get { return _VoitureSelectionnee; }
             set { AssignerChamp<C_TVoiture>(ref _VoitureSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
-        #endregion
-        #region VM
-        private VM_UnService _UnService;
-        public VM_UnService UnService
+        private C_TVoiture _VtrSelectionnee;
+        public C_TVoiture VtrSelectionnee
         {
-            get { return _UnService; }
-            set { AssignerChamp<VM_UnService>(ref _UnService, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            get { return _VtrSelectionnee; }
+            set { AssignerChamp<C_TVoiture>(ref _VtrSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
-
-        private VM_UneTransaction _UneTransaction;
-        public VM_UneTransaction UneTransaction
+        private C_TClient _ClSelectionnee;
+        public C_TClient ClSelectionnee
         {
-            get { return _UneTransaction; }
-            set { AssignerChamp<VM_UneTransaction>(ref _UneTransaction, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
-        }
-
-        private VM_UnClient _UnClient;
-        public VM_UnClient UnClient
-        {
-            get { return _UnClient; }
-            set { AssignerChamp<VM_UnClient>(ref _UnClient, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
-        }
-
-        private VM_UneVoiture _UneVoiture;
-        public VM_UneVoiture UneVoiture
-        {
-            get { return _UneVoiture; }
-            set { AssignerChamp<VM_UneVoiture>(ref _UneVoiture, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            get { return _ClSelectionnee; }
+            set { AssignerChamp<C_TClient>(ref _ClSelectionnee, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
         #endregion
         #region DataSource
@@ -142,6 +131,20 @@ namespace BDAutoWpf.ViewModel
         {
             get { return _BcpVoitures; }
             set { _BcpVoitures = value; }
+        }
+
+        private ObservableCollection<C_TVoiture> _BcpVtr = new ObservableCollection<C_TVoiture>();
+        public ObservableCollection<C_TVoiture> BcpVtr
+        {
+            get { return _BcpVtr; }
+            set { _BcpVtr = value; }
+        }
+
+        private ObservableCollection<C_TClient> _BcpCl = new ObservableCollection<C_TClient>();
+        public ObservableCollection<C_TClient> BcpCl
+        {
+            get { return _BcpCl; }
+            set { _BcpCl = value; }
         }
         #endregion
         #region ChargerDGV
@@ -193,6 +196,54 @@ namespace BDAutoWpf.ViewModel
                 rep3.Add(Tmp);
             return rep3;
         }
+        private ObservableCollection<C_TVoiture> ChargerVtr(string chConn)
+        {
+            int cptA, cptV;
+            rep5.Clear();
+            List<C_TVoiture> lTmp = new G_TVoiture(chConn).Lire("VMarque");
+            List<C_TTransaction> lTmp1 = new G_TTransaction(chConn).Lire("IDTransaction");
+            foreach (C_TVoiture v in lTmp)
+            {
+                cptA = cptV = 0;
+                foreach (C_TTransaction t in lTmp1)
+                {
+                    if (v.IDVoiture == t.IDVoiture)
+                    {
+                        if (t.TType == "Achat")
+                            cptA++;
+                        else if (t.TType == "Vente")
+                            cptV++;
+                    }
+                }
+                if (cptA > cptV)
+                {
+                    Stock.Add(v);
+                    rep5.Add(v);
+                }
+            }            
+            return rep5;
+        }
+        private ObservableCollection<C_TClient> ChargerCl(string chConn)
+        {
+            int cptc;
+            rep6.Clear();
+            List<C_TDesidrata> lTmp = new G_TDesidrata(chConn).Lire("IDDesidrata");
+            List<C_TClient> lTmp1 = new G_TClient(chConn).Lire("IDClient");
+            foreach(C_TClient c in lTmp1)
+            {
+                cptc = 0;
+                foreach (C_TDesidrata d in lTmp)
+                {
+                    if (c.IDClient == d.IDClient)
+                        cptc++;
+                }
+                if (cptc > 0)
+                {
+                    rep6.Add(c);
+                }
+            }
+            return rep6;
+        }
         #endregion
         #region Methode
         public void EncoderPresta()
@@ -214,6 +265,30 @@ namespace BDAutoWpf.ViewModel
             BcpServices = ChargerServices(chConnexion);
             BcpClients = ChargerClients(chConnexion);
             BcpVoitures = ChargerVoitures(chConnexion);
+            BcpVtr = ChargerVtr(chConnexion);
+            BcpCl = ChargerCl(chConnexion);
+        }
+        public List<C_TVoiture> CheckInterest()
+        {
+            VtrInterest.Clear();
+            List<C_TDesidrata> lTmp1 = new G_TDesidrata(chConnexion).Lire("IDDesidrata");
+            foreach (C_TDesidrata Tmp in lTmp1)
+            {
+                if(Tmp.IDClient == ClSelectionnee.IDClient)
+                {
+                    foreach (C_TVoiture v in Stock)
+                    {
+                        if ((Tmp.DMarque == v.VMarque || Tmp.DMarque == "") && (Tmp.DModel == v.VModel || Tmp.DModel == "")
+                            && (Tmp.DAnneeMin <= v.VAnnee || Tmp.DAnneeMin == null) && (Tmp.DAnneeMax >= v.VAnnee || Tmp.DAnneeMax == null)
+                            && (Tmp.DKmMin <= v.VKilometrage || Tmp.DKmMin == null) && (Tmp.DKmMax >= v.VKilometrage || Tmp.DKmMax == null)
+                            && (Tmp.DCouleur == v.VCouleur || Tmp.DCouleur == "") && (Tmp.DPrixMin <= v.VPrix || Tmp.DPrixMin == null) && (Tmp.DPrixMax >= v.VPrix || Tmp.DPrixMax == null))
+                        {
+                            VtrInterest.Add(v);
+                        }
+                    }
+                }                
+            }
+            return VtrInterest;
         }
         #endregion
 

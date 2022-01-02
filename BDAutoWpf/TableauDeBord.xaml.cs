@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BDAutoWpf.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace BDAutoWpf
     public partial class TableauDeBord : Window
     {
         private ViewModel.VM_TableauDeBord LocalTableauDeBord;
+        List<C_TVoiture> VtrInterest = new List<C_TVoiture>();
         public TableauDeBord()
         {
             InitializeComponent();
@@ -89,6 +91,7 @@ namespace BDAutoWpf
         {
             cbType.Items.Add("Achat");
             cbType.Items.Add("Vente");
+                       
         }
 
         private void dgTransactions_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -131,6 +134,20 @@ namespace BDAutoWpf
             }
             else
                 bEncoderTransac.IsEnabled = false;
+        }
+
+        private void dgCl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dgVtr.UnselectAll();
+            VtrInterest.Clear();
+            if (dgCl.SelectedIndex >= 0 )
+            {
+                VtrInterest = LocalTableauDeBord.CheckInterest();
+                foreach (C_TVoiture v in VtrInterest)
+                {
+                    dgVtr.SelectedItems.Add(v);
+                }
+            }
         }
     }
 }

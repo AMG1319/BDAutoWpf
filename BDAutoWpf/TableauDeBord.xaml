@@ -158,7 +158,55 @@
                         </Grid>
                     </Grid>
                 </TabItem>
-
+                <TabItem Header="Client intéréssé par un véhicule dispo">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>                       
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <DataGrid Name="dgVtr" ItemsSource="{Binding Path=BcpVtr}" VerticalScrollBarVisibility="Visible"
+                                IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Extended"  >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=IDVoiture}" />
+                                        <DataGridTextColumn Header="Marque" Binding="{Binding Path=VMarque}" Width="*" />
+                                        <DataGridTextColumn Header="Model" Binding="{Binding Path=VModel}" Width="*" />
+                                        <DataGridTextColumn Header="Annee" Binding="{Binding Path=VAnnee}" Width="*" />
+                                        <DataGridTextColumn Header="Km" Binding="{Binding Path=VKilometrage}" Width="*" />
+                                        <DataGridTextColumn Header="Couleur" Binding="{Binding Path=VCouleur}" Width="*" />
+                                        <DataGridTextColumn Header="Prix" Binding="{Binding Path=VPrix}" Width="*" />
+                                    </DataGrid.Columns>
+                                    <DataGrid.Resources>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="LightSkyBlue"/>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="Black"/>
+                                    </DataGrid.Resources>
+                                </DataGrid>
+                            </Grid>
+                            <Grid Grid.Column="0">
+                                <DataGrid Name="dgCl" ItemsSource="{Binding Path=BcpCl}"  VerticalScrollBarVisibility="Visible"
+                                    IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding ClSelectionnee, Mode=TwoWay}" SelectionChanged="dgCl_SelectionChanged">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=IDClient}" />
+                                        <DataGridTextColumn Header="Nom" Binding="{Binding Path=CNom}" Width="*" />
+                                        <DataGridTextColumn Header="Prénom" Binding="{Binding Path=CPrenom}" Width="*" />
+                                        <DataGridTextColumn Header="Num.Tél" Binding="{Binding Path=CNumTel}" Width="*" />
+                                        <DataGridTextColumn Header="Email" Binding="{Binding Path=CMail}" Width="*" />
+                                        <DataGridTextColumn Header="Code Postal" Binding="{Binding Path=CCodePostal}" Width="*" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>                                                        
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Button Name="bEnvoyerMail" Content="Envoyer un mail au client selectionné" Margin="3" 
+                                Command="{Binding cEnvoyerMail}" />
+                        </Grid>
+                    </Grid>
+                </TabItem>
 
             </TabControl>
         </Grid>
