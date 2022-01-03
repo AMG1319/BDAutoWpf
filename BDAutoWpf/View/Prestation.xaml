@@ -72,7 +72,7 @@
             <Button Name="bModifier" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding cModifier}" />
             <Button Name="bSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding cSupprimer}" />
+           Command="{Binding cSupprimer}" />            
         </StackPanel>
     </Grid>
 </Window>

@@ -226,21 +226,53 @@ namespace BDAutoWpf.ViewModel
                 p.Inlines.Add(new LineBreak());
                 p.Inlines.Add(new LineBreak());
                 p.Inlines.Add("Prix de transaction :    " + pTmp.TPrix.ToString() + " €");
+                List<C_TPrestation> prest = new G_TPrestation(chConnexion).Lire("IDPrestation");
+                double Fprix = (double)pTmp.TPrix;
+                bool ifprest = false;
                 p.Inlines.Add(new LineBreak());
                 p.Inlines.Add(new LineBreak());
-                p.Inlines.Add(new Bold(new Run("---------------------------------------------")));
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Frais effectué(s) sur le véhicule :");
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                foreach (C_TPrestation a in prest)
+                {                    
+                    if(a.IDTransaction == UneTransaction.ID)
+                    {
+                        ifprest = true;
+                        C_TService sv = new G_TService(chConnexion).Lire_ID(a.IDService);
+                        p.Inlines.Add("Frais de :    " + sv.SNom);
+                        p.Inlines.Add(new LineBreak());
+                        p.Inlines.Add(new LineBreak());
+                        p.Inlines.Add("Prix de la prestation :    " + a.PPrixTot + " €");
+                        p.Inlines.Add(new LineBreak());
+                        p.Inlines.Add(new LineBreak());
+                        Fprix += a.PPrixTot;                        
+                    }
+                }
+                if(ifprest==false)
+                {
+                    p.Inlines.Add(" Aucun frais n'a été effectué sur cette transaction");
+                }
+                else
+                {
+                    p.Inlines.Add(new LineBreak());
+                    p.Inlines.Add("Prix Total de la facture :    " + Fprix + " €");
+                }                
+
 
                 fd.Blocks.Add(p);
 
                 FileStream fs = new FileStream(@"D:\WPF-Winforms\Facture-" + id + ".rtf", FileMode.Create);
                 TextRange tr = new TextRange(fd.ContentStart, fd.ContentEnd);
                 tr.Save(fs, System.Windows.DataFormats.Rtf);
+                Process.Start(@"D:\WPF-Winforms\Facture-" + id + ".rtf");
             }
             else
-                MessageBox.Show("Sélectionner l'enregistrement à éditer");
+                MessageBox.Show("Sélectionner une transaction svp");
         
         }
-
         public void TransactionSelectionnee2UneTransaction()
         {
             UneTransaction.ID = Convert.ToInt32(TransactionSelectionnee[0].ToString());

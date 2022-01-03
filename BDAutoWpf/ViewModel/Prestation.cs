@@ -7,6 +7,9 @@ using System.Configuration;
 using System;
 using System.Data;
 using System.Windows.Forms;
+using System.Windows.Documents;
+using System.IO;
+using System.Diagnostics;
 
 namespace BDAutoWpf.ViewModel
 {
@@ -158,6 +161,7 @@ namespace BDAutoWpf.ViewModel
                 BcpPrestations.Remove(PrestationSelectionnee);
             }
         }
+
         public void PrestationSelectionnee2UnePrestation()
         {
             UnePrestation.ID = Convert.ToInt32(PrestationSelectionnee[0].ToString());
