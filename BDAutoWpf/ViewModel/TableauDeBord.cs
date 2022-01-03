@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,6 +29,7 @@ namespace BDAutoWpf.ViewModel
         List<C_TVoiture> VtrInterest = new List<C_TVoiture>();
         public BaseCommande cEncoderPresta { get; set; }
         public BaseCommande cEncoderTransac { get; set; }
+        public BaseCommande cEnvoyerMail { get; set; }
         public VM_TableauDeBord()
         {
             BcpTransactions = ChargerTransactions(chConnexion);
@@ -37,6 +40,7 @@ namespace BDAutoWpf.ViewModel
             BcpCl = ChargerCl(chConnexion);
             cEncoderPresta = new BaseCommande(EncoderPresta);
             cEncoderTransac = new BaseCommande(EncoderTransac);
+            cEnvoyerMail = new BaseCommande(EnvoyerMail);
         }
 
         #region Accesseur
@@ -290,7 +294,34 @@ namespace BDAutoWpf.ViewModel
             }
             return VtrInterest;
         }
+        public void EnvoyerMail()
+        {
+            string mail = "Marouane-_-hammani@outlook.be", mdp = "mimou95J";
+            SmtpClient clientDetails = new SmtpClient();
+            clientDetails.Port = 25;
+            clientDetails.Host = "smtp.live.com";
+            clientDetails.EnableSsl = true;
+            clientDetails.DeliveryMethod = SmtpDeliveryMethod.Network;
+            clientDetails.UseDefaultCredentials = false;
+            clientDetails.Credentials = new NetworkCredential(mail, mdp);
+
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress(mail);
+            mailMessage.To.Add(ClSelectionnee.CMail);
+            mailMessage.Subject = "Voiture suceptible de vous intéressé ";
+            mailMessage.IsBodyHtml = true;
+            mailMessage.Body = "Bonjour madame, monsieur "+ClSelectionnee.CNom+" "+ClSelectionnee.CPrenom+ ","+"<br />"+ "<br />" + "Des voitures suceptibles de répondre à vos attentes sont arrivés dans notre stock," + "<br />" + "<br />" + "voici les modèls en questions: ";
+            
+            foreach(C_TVoiture m in VtrInterest)
+            {
+                mailMessage.Body += "<br />" + "<br />" + "Marque : " +m.VMarque + "<br />" + " Modèl : " + m.VModel + "<br />" + " Année : " + m.VAnnee + "<br />" + " Kilométrage : " + m.VKilometrage +"Km"+ "<br />" + " Couleur : " + m.VCouleur + "<br />" + " Prix : " + m.VPrix + " €";
+            }
+            mailMessage.Body += "<br />"+ "<br />" + " n'hésitez pas à nous contactez pour plus d'informations ! "+ "<br />" + "<br />" + "Votre concession préférée MSAutomobile";
+            clientDetails.Send(mailMessage);
+        }
         #endregion
+
+
 
     }
 }

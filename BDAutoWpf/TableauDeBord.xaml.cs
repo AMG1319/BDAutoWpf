@@ -30,6 +30,7 @@ namespace BDAutoWpf
             DataContext = LocalTableauDeBord;
             bEncoderPresta.IsEnabled = false;
             bEncoderTransac.IsEnabled = false;
+            bEnvoyerMail.IsEnabled = false;
         }
         private void btnAjouterVoiture_Click(object sender, RoutedEventArgs e)
         {
@@ -142,10 +143,16 @@ namespace BDAutoWpf
             if (dgCl.SelectedIndex >= 0 )
             {
                 VtrInterest = LocalTableauDeBord.CheckInterest();
-                foreach (C_TVoiture v in VtrInterest)
+                if (VtrInterest.Count > 0)
                 {
-                    dgVtr.SelectedItems.Add(v);
+                    bEnvoyerMail.IsEnabled = true;
+                    foreach (C_TVoiture v in VtrInterest)
+                    {
+                        dgVtr.SelectedItems.Add(v);
+                    }
                 }
+                else
+                    bEnvoyerMail.IsEnabled = false;
             }
         }
         private void btnAfficherStock_Click(object sender, RoutedEventArgs e)
