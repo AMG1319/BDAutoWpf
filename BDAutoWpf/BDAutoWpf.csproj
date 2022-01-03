@@ -59,6 +59,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\Base.cs" />
+    <Compile Include="ViewModel\ChiffreDaffaire.cs" />
     <Compile Include="ViewModel\Client.cs" />
     <Compile Include="ViewModel\Desidrata.cs" />
     <Compile Include="ViewModel\Prestation.cs" />
@@ -67,6 +68,9 @@
     <Compile Include="ViewModel\TableauDeBord.cs" />
     <Compile Include="ViewModel\Transaction.cs" />
     <Compile Include="ViewModel\Voiture.cs" />
+    <Compile Include="View\ChiffreDaffaire.xaml.cs">
+      <DependentUpon>ChiffreDaffaire.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
     </Compile>
@@ -88,7 +92,7 @@
     <Compile Include="View\Voiture.xaml.cs">
       <DependentUpon>Voiture.xaml</DependentUpon>
     </Compile>
-    <Page Include="TableauDeBord.xaml">
+    <Page Include="View\TableauDeBord.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -96,10 +100,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TableauDeBord.xaml.cs">
+    <Compile Include="View\TableauDeBord.xaml.cs">
       <DependentUpon>TableauDeBord.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ChiffreDaffaire.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Client.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

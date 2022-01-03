@@ -163,5 +163,14 @@ namespace BDAutoWpf
             Show();
             LocalTableauDeBord.Refresh();
         }
+
+        private void btnChiffreDaffaire_Click(object sender, RoutedEventArgs e)
+        {
+            View.ChiffreDaffaire f = new View.ChiffreDaffaire();
+            Hide();
+            f.ShowDialog();
+            Show();
+            LocalTableauDeBord.Refresh();
+        }
     }
 }

@@ -10,8 +10,6 @@ D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf.csproj.GenerateResource.cac
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf.csproj.CoreCompileInputs.cache
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf.exe
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\BDAutoWpf.pdb
-D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\TableauDeBord.g.cs
-D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\TableauDeBord.baml
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Voiture.g.cs
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Voiture.baml
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Client.g.cs
@@ -26,3 +24,7 @@ D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Transaction.g.cs
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\Transaction.baml
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\StockHtml.g.cs
 D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\StockHtml.baml
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\TableauDeBord.g.cs
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\ChiffreDaffaire.g.cs
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\TableauDeBord.baml
+D:\GitKraken\BDAutoWpf\BDAutoWpf\obj\Debug\View\ChiffreDaffaire.baml

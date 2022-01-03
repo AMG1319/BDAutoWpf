@@ -1,0 +1,17 @@
+﻿<Window x:Class="BDAutoWpf.View.ChiffreDaffaire"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BDAutoWpf.View"
+        mc:Ignorable="d"
+        Title="ChiffreDaffaire" Height="200" Width="300" Background="Black">
+    <Grid>
+        <TextBox Name="tbID" Text="{Binding Path=LChiffre, Mode=TwoWay}" FontSize="20" IsEnabled="False" Margin="10,105,64.6,31.4" />
+        <DatePicker Name="dtpSemaine" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" Height="32" Width="214"
+                    SelectedDate="{Binding Path=Dt, Mode=TwoWay, StringFormat='dd/mm/yyyy'}"/>
+        <Button Name="bCalculer" Content="Calculer" Margin="229,32,9.6,106.4" Command="{Binding cCalculer}" IsEnabled="True"/>
+        <Label Content="Chiffre d'affaire" Foreground="White" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
+        <Label Content="Choisissez le 1er jour de votre semaine " Foreground="White" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
