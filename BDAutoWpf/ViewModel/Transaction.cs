@@ -7,6 +7,9 @@ using System.Collections;
 using System.Configuration;
 using System.Data;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.IO;
+using System.Windows.Documents;
 
 namespace BDAutoWpf.ViewModel
 {
@@ -61,6 +64,7 @@ namespace BDAutoWpf.ViewModel
         public BaseCommande cAjouter { get; set; }
         public BaseCommande cModifier { get; set; }
         public BaseCommande cSupprimer { get; set; }
+        public BaseCommande cFacture { get; set; }
         #endregion
         public VM_Transaction()
         {
@@ -80,6 +84,7 @@ namespace BDAutoWpf.ViewModel
             cAjouter = new BaseCommande(Ajouter);
             cModifier = new BaseCommande(Modifier);
             cSupprimer = new BaseCommande(Supprimer);
+            cFacture = new BaseCommande(Facture);
         }
         private BindingSource ChargerTransactions(string chConn)
         {
@@ -163,6 +168,77 @@ namespace BDAutoWpf.ViewModel
                 new G_TTransaction(chConnexion).Supprimer(int.Parse(TransactionSelectionnee[0].ToString()));
                 BcpTransactions.Remove(TransactionSelectionnee);
             }
+        }
+        public void Facture()
+        {
+            if (TransactionSelectionnee != null)
+            {
+                FlowDocument fd = new FlowDocument();
+                Paragraph p = new Paragraph();
+                int id = UneTransaction.ID;
+                C_TTransaction pTmp = new G_TTransaction(chConnexion).Lire_ID(id);
+                C_TClient client = new G_TClient(chConnexion).Lire_ID(pTmp.IDClient);
+                C_TVoiture voiture = new G_TVoiture(chConnexion).Lire_ID(pTmp.IDVoiture);
+
+                p.Inlines.Add(new Bold(new Run("-------------------FACTURE-------------------")));
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Numéro de facture   :    " + id);
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Type de transaction :    " + pTmp.TType);
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Date de transaction :    " + pTmp.TDate.Date.ToString("d"));
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Identifiant Client  :    " + pTmp.IDClient.ToString());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Nom                 :    " + client.CNom);
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Prénom              :    " + client.CPrenom);
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Numéro de Tel.      :    " + client.CNumTel);
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Email               :    " + client.CMail);
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Identifiant Voiture :    " + pTmp.IDVoiture.ToString());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Marque              :    " + voiture.VMarque);
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Modèle              :    " + voiture.VModel);
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Année               :    " + voiture.VAnnee);
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Kilométrage         :    " + voiture.VKilometrage);
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Couleur             :    " + voiture.VCouleur);
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add("Prix de transaction :    " + pTmp.TPrix.ToString() + " €");
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new Bold(new Run("---------------------------------------------")));
+
+                fd.Blocks.Add(p);
+
+                FileStream fs = new FileStream(@"D:\WPF-Winforms\Facture-" + id + ".rtf", FileMode.Create);
+                TextRange tr = new TextRange(fd.ContentStart, fd.ContentEnd);
+                tr.Save(fs, System.Windows.DataFormats.Rtf);
+            }
+            else
+                MessageBox.Show("Sélectionner l'enregistrement à éditer");
+        
         }
 
         public void TransactionSelectionnee2UneTransaction()

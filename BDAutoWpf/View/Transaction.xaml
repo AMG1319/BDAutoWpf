@@ -72,13 +72,15 @@
                 <DataGridTextColumn Header="Date" Binding="{Binding Path=TDate}" Width="Auto" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="227,2.2,198.6,3" Grid.ColumnSpan="2" >
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="206,2.4,124.6,3" Grid.ColumnSpan="2" Width="263" >
             <Button Name="bAjouter" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding cAjouter}" />
             <Button Name="bModifier" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding cModifier}" />
             <Button Name="bSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
            Command="{Binding cSupprimer}" />
+            <Button Name="bFacture" Content="Facture" Margin="3,3,3,2.6" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+           Command="{Binding cFacture}" Width="60" />
         </StackPanel>
     </Grid>
 </Window>
